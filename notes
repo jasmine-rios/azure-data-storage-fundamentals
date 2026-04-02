@@ -47,4 +47,14 @@ Today, the same business must handle all of these at the same time:
     - Real-time location information
 
 Think about your daily digital footprint. When you stream a video you're accessing unstructured multimedia content stored somewhere in the cloud. 
-When you check your bank balance 
+When you check your bank balance, you're querying structured data that must be absolutely accurate and immediately consistent.
+When you update your social media profile, you're modifying semi-structured data that needs to be flexible enough to accommodate new features but organized enough for the platform to function.
+Each of these interactions required different storage approaches, and understanding these difference is crucial for success in Azure's data platform.
+
+**REAL-WORLD INSIGHT**
+
+I've worked with organizations that struggled for months with performance issues and cost overruns simply because they chose the wrong storage approach for their data types.
+
+Understanding these fundamentals can save both time and money while enabling capabilities that wouldn't be possinle with mismatched storage solutions
+
+**EORWI**
