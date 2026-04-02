@@ -68,3 +68,34 @@ A critical distinction exists between row-based formats (optimized for transacti
 The choice of file format often makes the difference between a system that scales efficently and one that becomes prohibitively expensive as data volumes grow.
 A social media company storing billions of user photos needs very different file format characteristics than a financial insitution processing millions of daily transaction, yet both might use cloud storage--just with different formats optimized for their specific needs.
 
+The figure below shows the fundamental trade-offs between different file formats like:
+
+![Data File Formats and their trade-offs](image.png)
+
+- CSV (Prioritize human readability and universal compatibility)
+
+- Parquet (Optimize for stoage efficency and analytical query performance)
+
+Understanding these trade-offs helps you make informed decisions about how to store your data for both current and future needs:
+    - CSV
+    - JSON
+    - Parquet
+    - Avro
+
+Beyond CSV and Parquet, JSON serves as the de facto standard for semi-structured data in Web APIs and document databases like Azure Cosmos DB.
+For streaming scenarios, Apache Avro provides a compact binary format with schema evolution capabilities, making it ideal for use with Azure Event Hubs and Azure Stream Analytics.
+
+In this section, we'll explore the fundamental file formats used in modern data platforms. We'll examine how different formats optimize for specific use cases, from simple data exchange to complex analytical workloads, and understand their trade-offs of storage efficency, processing performance, and compatibility.
+
+## CSV: The Universal Translator
+
+CSV, commonly stored in *Azure Blob Storage* or *Azure Data Lake Storage Gen2*, represents one of the most enduring and universally supported data file formats ever created, and there's a good reason it has survived in our increasingly complex digital world. 
+Despite its apparent simplicity--or perhaps because of it--CSV, which stands for comma-separated values, remains the go-to choice for data exchange, repoting, and intial data storage across virtually every industry and application domains.
+
+Think of CSV as the common language that almost every system can understand. 
+Whether you're working with Excel, importing data into a database, feeding infomration to a machine learning algorithm, or sharing data with a business partnet who uses completely different software, CSV files provides a reliable bridge between different technologies and organizations.
+
+## Strengths of the CSV format
+
+The universality of CSV support represents perhaps its greatest strength.
+Virtually every database system, analytical tool, spreadsheet application, and programming language can work with CSV files.
