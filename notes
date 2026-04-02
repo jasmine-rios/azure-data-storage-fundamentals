@@ -1,5 +1,9 @@
 # Chapter 2. Data Storage Fundamentals
 
+## Disclaimer
+
+These are notes taken from Data Storage Fundamenetals on O'Reilly Media
+
 This chapter explores data storage fundamentals and their implementation in Azure services. 
 Key Azure services covered include:
     - *Azure Blob Storage* for unstructured data
@@ -32,4 +36,15 @@ Just 20 years ago, they might have just used simple POS (Point-of-sales) and a p
 Today's digital world has fundamentally transformed not just how we interact with businesses but how organizations must think about storing and managing the explosion of data that these interactions create.
 The choices you make about data storage impact everything from how quickly customers can complete transactions to how much you spend on technology infrastructure to whether you can extract meaningful business insights from your data.
 
-The evolution of data storage reflects a broader transformation in how businesses operate. That coffee shop's journey from cash registers to cloud-connected point
+The evolution of data storage reflects a broader transformation in how businesses operate. That coffee shop's journey from cash registers to cloud-connected point-of-sale systems mirrors what's happening across every industry.
+A decade ago, most business data fit neatly into spreadsheets and simple databases. 
+Today, the same business must handle all of these at the same time:
+    - customer reviews
+    - social media interactions
+    - mobile app usage data
+    - IoT sensor readings
+    - Video content
+    - Real-time location information
+
+Think about your daily digital footprint. When you stream a video you're accessing unstructured multimedia content stored somewhere in the cloud. 
+When you check your bank balance 
