@@ -14,3 +14,16 @@ This chapter addresses the following DP-900 exam objectives:
 - Identify different databases and their use cases.
 - Understand the difference between cloud and on-premises storage approaches.
 - Recognize appropriate storage solutions for different data scenarios.
+
+Imagine going to get coffee and paying with your loyalty card it:
+
+    - Checks your purchase history
+    - Snaps a photo of your custom lattee art to post on social media
+    - Processes your payment
+
+**All of this happens in under a minute**
+
+This transaction demos three fundamental challendges every modern organization faces:
+    - Where to store your structured customer data (loyalty acccount).
+    - How to handle your semi-structured purchased patterns (varying order details).
+    - What to do with unstructured content like photos and social media posts.
