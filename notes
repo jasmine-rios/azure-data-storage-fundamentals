@@ -102,9 +102,31 @@ Virtually every database system, analytical tool, spreadsheet application, and p
 This makes CSV an excellent choice for data exchange between different systems, providing data to users who might use various tools for analysis, or creating data exports that can be consumed by virtually any downstream system.
 
 Human readability makes CSV files accessible to nontechnical users who can open and understand the data using familar tools like Excel and Google Sheets.
-
 This accessiblity enables business users to review, validate, and even modify data without requiring specialized technical tools or expertise--a capability that becomes invaluable during data validation and business review processes.
 
 Simplicity and lightweight nature means that CSV files are easy to generate, process, and transmit. 
+The format has minimal overhead-- no complex headers, metadata, or formatting information--making it efficent for simple data exchange scenarios where you need to move information quickly and reliably.
 
-The format has minimal overhead-- no complex headers, metadata, or formatting information--mak
+### Limitations that matter in practice
+
+However, CSV files have significant limitations that become apparent in modern data scenarios.
+Its lack of native data type support means everything is stored as text, and must be interpreted by the consuming application.
+A date might be stored as `2023-12-25`, but it's just text until an application interprets it as date, which can lead to inconsistencies and errors when different systems intepret the same data differently.
+
+Poor handling of complex data structures represenys another major limitation. CSV cannot naturally represent nested or hierarchical data, arrays, or complex relationships. Any complex data must be flattened or stored in sepreate files, which can lead to data integrity challenges and complex processing requirements.
+
+While CSV files cannot represent complex nested structures, alternatives like JSON excel at representing hierarchical data with nested objects and arrays.
+For analytical workloads requireing better compression and query performance, Parquet format offers columnar storage that can achieve 10x better compression ratios than CSV while enabling efficent column-specific queries.
+
+**WARNING**
+
+Don't assume CSV is always the simplest solution. While CSV files appear simple, the lack of data type informaiton and schema validation can create hidden complexity when systems interpret the same data differently.
+
+**EOW**
+
+## When to choose CSV
+
+CVS excels in scenarios involving data exchange between different organizations or systems where universal compatiability is more important than advanced features. 
+It is also ideal for initial data exploration and prototyping where you need to quickly examine data without setting up complex infrastructure.
+
+Business reporting and manual data review scenarios often benefit from CSV's human readability, allowing business users to validate and understand data using familiar spreadsheet tools.
