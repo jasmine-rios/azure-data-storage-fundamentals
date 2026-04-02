@@ -1,1 +1,16 @@
+# Chapter 2. Data Storage Fundamentals
 
+This chapter explores data storage fundamentals and their implementation in Azure services. 
+Key Azure services covered include:
+    - *Azure Blob Storage* for unstructured data
+    - *Azure SQL Database* for structured data
+    - *Azure Cosmos DB* for semi-structured data
+    - *Azure Data Lake Storage Gen2* for big scenatrios
+    - *Azure Synapse Analytics* for data warehousing
+
+This chapter addresses the following DP-900 exam objectives:
+
+- Understand common data file formats and their characteristics.
+- Identify different databases and their use cases.
+- Understand the difference between cloud and on-premises storage approaches.
+- Recognize appropriate storage solutions for different data scenarios.
