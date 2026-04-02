@@ -333,6 +333,24 @@ If your business rules state that customer orders must have valid customer IDs, 
 *Isolation* ensures that concurrent transactions don't interfere with each other, even when accessing the same data simultaneously.
 If two customers try to buy the last item in stock at the same time, isolation ensures that onnly one transaction succeeds, preventing the item from being oversold.
 
-*Durability*
+*Durability* means that once a transaction is committed, it will persist even if system failures occur immediately afterward. If you successfully transfer money between accounts, that transaction remains permanent even if the bank's computer system crashes seconds later.
+
+#### Powerful query capabilities
+
+*SQL's sophicated querying capabilties* enable complex analysis and reporting that would be difficult or impossible with other database types. The predictable table structure allows for operations like joining data from multiple table, calculating complex aggregations, and performing statistical analysis across different dimensions of your data.
+
+Consider a retail company analyzing customer purchasing patterns, With relational databases, you can easily join customer information, order history, product details, and inventory data to answer complex questions, like "Which customers who purchased winter coats in the last two years are most likely to be interested in our new spring collection, and what's their preferred communication channel?"
+
+**EXAM TIP**
+
+Knowledge of SQL remains one of the most valuable skills in data management because it provides a standardized way to work with data relationships and perform complex analyses. 
+Understanding SQL concepts is fundamental for success with Azure's data platform.
+
+**EOET**
+
+#### When relational databases shine
+
+*Financial and transactional systems* benefit from the strong consistency guarantees and mature transaction processing 
+
 
 
