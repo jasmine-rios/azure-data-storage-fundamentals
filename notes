@@ -130,3 +130,14 @@ CVS excels in scenarios involving data exchange between different organizations 
 It is also ideal for initial data exploration and prototyping where you need to quickly examine data without setting up complex infrastructure.
 
 Business reporting and manual data review scenarios often benefit from CSV's human readability, allowing business users to validate and understand data using familiar spreadsheet tools.
+However, for production systems requiring data type validation, complex relationships, or high-performance processing, other formats typically provide better long-term solutions.
+
+## JSON: The Modern Standard
+
+JSON, natively supported by *Azure Cosmos DB* and *Azure Functions*, has emerged as the dominant format for data exchange in modern web applications, APIs, and cloud services.
+Orginally developed for web browsers to communicate with servers, JSON has transcended its JavaScript origins to become the universal language of modern software development, cloud computing, and API integration.
+
+What makes JSON special is its ability to represent complex, nested data structures while remaining both human readable and machine parseable. Unlike CSV, which forces everything into a flat table structure, JSON can naturally represent the way we think about real-world organization.
+
+## The power of a flexible structure
+
