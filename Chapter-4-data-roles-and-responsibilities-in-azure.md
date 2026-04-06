@@ -304,3 +304,96 @@ The integration between Databricks and other Azure services allows for seamless 
 
 Programming tools and frameworks are essential for modern data scientists.
 While the DP-900 exam doesn't test deep programming knowledge, understanding how Python (a popular general-purpose programming language) and R (a programming language specialized for statistical computing) are used within Azure's data science tools is important.
+This includes basic familarity with common data science libraries and how they're supported in Azure.
+
+#### Future evolution of data scientists in Azure
+
+The field of data science continues to evolve with new technologies and approaches.
+Automated machine learning is making some aspect of model development more accessible, while increasing the importantance of business understanding and problem formulation.
+Data scientist must stay current with emerging techniques while maintaining focus on delivering business value.
+
+**Exam Tip**
+
+Focus on understanding how Azure's data science tools work together rather than the technical details of machine learning algorithms.
+Know the basic workflow from data preparation to model deployment.
+
+**EOET**
+
+Ethical AI and responsible machine learning have become crucial considerations.
+Data scientists must understand concepts like model fairness, transparency, and accountability.
+They need to implement appropriate goverance controls and ensure that their models meet ethical guidelines and regulatory requirements.
+
+The evolution of data science in Azure represents a shift from isolated experiementation to integrated, production-ready solutions.
+While statistical and programming skills remain important, the ability to work within cloud-based platforms and collaborate across teams has become essential.
+For the DP-900 exam, understanding this integrated approach to data science and how it fits within the broader Azure ecosystem is key.
+
+**Exam Tips**
+
+While deep learning and advanced AI concepts aren't covered on the DP-900 exam, understanding how Azure supports these capabilities provides valueable context for future learning paths.
+
+**EOET**
+
+The role of the data scientist continues to evolve as Azure introduces new capabilities and automates certain aspects of the machine learning workflow.
+However, the fundamental skill of problem solving, statistical thinking, and business understanding remain crucial for success in this field.
+Those preparing for the DP-900 exam should focus on understanding how data scientists use Azure's tools to deliver value to organizations, rather than the technical details of machine learning algorithms.
+
+As organizations mature in their data practices and face increasing regulatory pressures, a new role has emerged to bridge the gap between technical implementation and goverance requirements.
+Let's explore the evolving role of data governers, who ensure that an organization's data assets are properly managed, protected, and utilized.
+
+### Data Governers
+
+Data governors, also known as *data stewards* in some organizations, ensure that organizational data remains secure, compliant, and high quality.
+This emerging role has become increasingly critical with the introduction of data privacy regulations like GDPR (General Data Protection Regulation in Europe) and CCPA (California Consumer Privacy Act), which establish strict rules for handling personal data.
+In Azure, data governers use tools like Microsoft Purview to implement goverance policies and maintain data catalogs.
+
+#### Core responsibilities of data governers in Azure
+
+Modern data goverance extends far beyond traditional database administration or security management.
+Data governors serve as the bridge between business requirement, regulatory compliance, and technical implementation.
+They work closely with legal teams to understand compliance requirements, with business units to establish data ownership, and with technical teams to implement appropriate controls.
+
+In the Azure ecosystem, data governers implement comprehensive data governance frameworks.
+They use Microsoft Purview to create and maintain data catlogs, establishing a single source of truth for data assets across the organization.
+This includes documenting data sources, defining business glossaries, and mapping data lineage from source to consumption.
+
+Security and compliance have become cornerstone responsibilities. 
+Data governors work with Azure's security features to implement appropriate access controls, data classification, and protection policies.
+They ensure that sensitive data is properly identified and protected, whether it resides in databases, data lakes, or analytical systems.
+
+Data quality management has evolved into a strategic function.
+Data governers establish and monitor quality metrics, implement data quality rules, and work with data engineers to ensure that data pipelines maintain data integrity.
+They use Azure's tools to monitor data quality and implement correction procedures when issues arise.
+
+#### Azure-related tools and platforms for data governors
+
+Microsoft Purview serves as the primary tool for data governance in Azure.
+It provides capabilities for data discovery, classification, and lineage tracking.
+Data governers use Purview to create comprehensive data maps, implement sensitivity labels, and monitor data movement across the organization.
+
+**Exam Tip**
+
+The exam emphasizes Microsoft Purview's role in modern data goverance.
+Understand its key features and use cases.
+
+**EOET**
+
+Other Azure tools, like Policy and RBAC (role-based access control), are essential for implementing governance controls.
+Data governors use these services to enforce compliance requirements, manage access permissions, and ensure consistent policy application across the data estate.
+
+Integration with Azure's broader security features allows data governers to implement comprehensive data protection.
+This includes using Azure Information Protection for data classification, Azure Key Vault for secret management, and Azure Monitor for security monitoring.
+
+#### Future evolution of data governors in Azure
+
+As organizations continue to mature in their data practices, the data governor role is expected to become increasingly strategic.
+The growing importance of data privacy, the emergence of AI regulations, and the increasing complexity of data ecosystems all point to an expanding scope for this role.
+
+**Exam Tip**
+
+While not explicitly covered on the DP-900 exam, data governors are increasingly involved in defining goverance frameworks for emerging technologies like AI (especially generative AI), IoT, and edge computing.
+
+**EOET**
+
+The evolution of data governance in Azure represent a shift from tactical security and compliance to strategic data management. While technical skills remain important, the ability to bridge business, legal, and technical requirements has become essential.
+For the DP-900 exam, understanding how Azure's governance tools support this emerging role is crucial for success.
+
