@@ -165,3 +165,142 @@ Focus on understanding how Azure services work together in data engineering scen
 Know the basic purpose and capabilities of each service rather than deep technical details.
 
 **EOET**
+
+Collaboration has become essential in modern data engineering.
+Engineers work closely with data scientists to prepare data for machine learning, with analysts to ensure that data is properly modeled for business intelligence, and with database administrators to optimize data storage and access patterns.
+This collaborative aspect reflects the interconnected nature of modern data platforms in Azure.
+
+The evolution of data engineering represents a shift from writing code to architecting solutions.
+While technical skills remain important, the ability to design scalable, maintainable data solutions using Azure's managed services has become paramount.
+For the DP-900 exam, understanding this architectural approach is more important than knowing specific coding details.
+
+Building on our understanding of how data engineers prepare and process data, let's explore the role of data analysts who transform this data into actionable business insights.
+Thier role has evolved significantly with Azure's modern analytics tools, making them crucial interpreters of data in the AI and cloud era.
+
+### Data Analysts
+
+Data analysts represent the bridge between complex data and business understanding.
+In Azure, they've gained powerful new tools that have expanded their capabilities far beyond traditional spreasheet analysis.
+Modern data analysts combine deep business knowledge with technical skills to deliver insights through platforms like Power BI.
+
+**Exam Tip**
+
+The exam often tests your ability to distinguish between analyst and data scientist repsonsibilities.
+While there's some overlap, analyst typically focus on descriptive analytics while data scientists handle predictive modeling.
+
+**EOET**
+
+Consider how a data analyst might approach a sales analysis project in Azure.
+They would start by accessing prepared data from Azure Synapse Analytics, create data models in Power BI, build interactive dashboards, and share insights through the Azure ecosystem.
+The role requires both business needs and data technologies.
+
+The modern data analyst must also understand data governance principles and work within established security frameworks.
+They need to know when to seek help from data engineers for complex data preparation and when to engage data scientists for advanced analytics needs.
+
+#### Core responsibilities of data analyst in Azure
+
+Modern data analysts spend significant time working with data modeling tools in Power BI.
+They create relationships between tables, design calculated columns and measures, and ensure that their models are optimized for both performance and usability.
+This involves understanding data modeling concepts like star schemas (a database design pattern where a central fact table connects to multiple dimension tables), slowly changing dimensions (table that tracks how data changes over time), and other best practice for data modeling.
+
+Visualization design has become increasingly sophisticated in the cloud era.
+Analysts must create compelling, interactive dashboards that tell stories with data.
+They use Power BI's advnaced features to build reports that are both informative and user-friendly, incorporating features like drill-through capbilities (allowing users to move from summary to detailed data), bookmarks (saved views of report pages), and custom tooltips (enhanced popup information) to enhance the user experience.
+
+Data preparation, while simplified by modern tools, remains a crucial skill.
+Analysts use Power Query to clean and transform data, creating repeatable processes that can be easily maintained and updated.
+They must understand how to handle common data quality issues, combine data from multiple sources, and create reliable data refresh processes.
+
+Business partnership has taken on new dimensions with cloud technologies.
+Analysts work closely with stakeholders to understand requirements, design effective solutions, and ensure data-driven decision making.
+They must be able to explain complex data concepts to nontechnical audiences and translate business needs into technical specifications.
+
+#### Azure-related tools and platforms for data analysts
+
+Power BI serves as the primary tool for modern data analysts in Azure. They use Power BI Desktop for development, Power BI Service for sharing and collaboration, and Power BI Mobile for on-the-go access to insights.
+
+Data analysts must be proficient in query lanaguages and analytical functions.
+This includes writing expressions for calculations, using the Power Query M language for data transformation, and understanding fundamental SQL concepts for data retrieval.
+The exam tests basic understanding of these tools and when to use each one.
+
+Azure integration knowledge has become essential.
+Analysts need to understand how Power BI connects with various Azure services, including Azure Synapse Analytics, Azure Analysis Services, and Azure Data Lake Storage.
+They should know how to establish and maintain these connections securely
+
+**Exam Tip**
+
+While Microsoft Fabric is not explicitly covered on the DP-900 exam, understanding its role is valuable for aspiring data analysts.
+This unified analytics platform represents the evolution of Power BI and Azure data services, bringing togehter data integration, warehousing, and analytics capabilities in a seamless environment.
+Consider exploring Fabric after mastering the core DP-900 exam concepts
+
+**EOET**
+
+#### Future evolution of data analysts in Azure
+
+The role of data analysts continues to evolve with new technologies.
+AI features in Power BI, such as natural language querying and automated insights, are becoming increasingly important.
+Analysts need to understand how to leverage these capabilities while maintaining control over the analysis process.
+
+**Exam Tip**
+
+For success on the DP-900 exam, focus on understanding how Power BI integrates with Azure services and the basic capabilities of Power BI Desktop and Service.
+Detailed DAX knowledge isn't required.
+
+**EOET**
+
+Collaboration and goverance has become key aspects of the analyst role.
+Modern analysts work within governed data environments, understanding concepts like row-level security, sensitivity labels, and certified datasets.
+They must balance the need for data access with security and compliance requirements.
+
+The transformation of data analysis in Azure represents a shift from isolated analysis to integrated, collaborative insights generation.
+While Excel skills remain valuable, the ability to work with cloud-based tools and understand the broader data ecosystem has become essential.
+For the DP-900 exam, understanding this integrated approach to analysis is crucial for success.
+
+While data analysts focus on understanding what was happened through descriptive analytics, data scientists look to what might happen next.
+Let's explore how these professionals use Azure's advanced analytics and machine learning capabilities to transform data into predictive insights.
+
+### Data Scientists
+
+Data scientists apply advanced statistical methods and machine learning to solve complex business problems.
+In Azure, they leverage services like Azure Machine Learning and Azure Databricks to build and deplot predictive models.
+
+This role requires a unique combination of skills: statistical knowledge, programming expertise, and business acumen.
+Data scientists must understand how to use Azure's machine learning tools effectively while ensuring that their solutions solve real business problems.
+
+**Exam Tip**
+
+The exam focuses on how data scientists interact with Azure services rather than the technical details of machine learning algorithms
+
+**EOET**
+
+A typical machine learning project in Azure involves collaborating with data engineers to access and prepare training data, using Azure Machine Learning to develop and train models, and working with software engineers to deploy models into production applications.
+
+##### Core responsibilities of data scientists in Azure
+
+Modern data scientists spend considerable time in data exploration and preparation.
+Using tools like Azure Databricks notebooks and Azure Machine Learning studios, they analyze data patterns, handle missing values, and create feature engineering pipelines.
+This exploratory phase is crucial for understanding data characteristics and potential modeling approaches.
+
+Model development has been transformed by Azure's machine learning capabilities.
+Data scientists use Azure Machine Learning to experiment with different algorithms, tune hyperparameters, and track model versions.
+They can leverage automated machine learning (AutoML, which automatically tests differnt machine learning algorithms and configurations) for initial model selection and optimization, while maintaining control over the modeling process.
+
+Model deployment and monitoring have become streamlined in the cloud era.
+Azure provides tools for deploying models as APIs, monitoring model performance, and detecting data drift (changes in the statistical properties of data over time that might affect model accuracy).
+
+Collaboration has become increasingly important in the data science role.
+Data scientists work closely with domain experts to understand business problems, with data engineers to ensure data preparation, and with software developers to integrate models iinto applications.
+They must effectively commmunicate technical concepts to various stakeholders.
+
+#### Azure-related tools and platforms for data scientists
+
+Azure Machine learning serves as the primary platform for data science work.
+It provides notebooks for code development, experiments for model training, and deployment capabilties for productionizing models.
+Understand how to navigate and use these features effectively is important for the DP-900 exam.
+
+Azure Databricks offers a collaborative environment for large-scale data processing and machine learning.
+Data scientists use its distributed computing capabilities to handle big data and train complex models.
+The integration between Databricks and other Azure services allows for seamless workflow development.
+
+Programming tools and frameworks are essential for modern data scientists.
+While the DP-900 exam doesn't test deep programming knowledge, understanding how Python (a popular general-purpose programming language) and R (a programming language specialized for statistical computing) are used within Azure's data science tools is important.
