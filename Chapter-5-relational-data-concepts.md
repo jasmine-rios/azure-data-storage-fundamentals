@@ -506,3 +506,15 @@ JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 This query connects each order with its corresponding customer using the `CustomerID` that's common to both tables.
 The result gives you a comprehensive view showing the order ID, the customer's name, and when they placed the order-- information that orginally lived in seperate tables.
 
+**Exam Tip**
+
+While there are several types of `JOIN`s (`INNER`, `LEFT`, `RIGHT`, and `FULL`), the DP-900 exam focuses primarily on basic `INNER JOIN` opertaions, which only return matches found in both tables.
+
+**EOET**
+
+Understnading table relationships and joins is crucial because they reflect how data is organized in real-world business scenarios.
+Whether you're tracking inventory, managing customer relationships, or analyzing sales patterns, you'll often need to bring together information from multiple tables to get meaningful insights.
+
+## Common Database Objects
+
+Tables provide the foundation for storing our data, but a modern database system relies on several additional objects to operate effectively.
