@@ -314,4 +314,195 @@ Similarly, if you need to review recent orders for your monthly report, you coul
 
 ```SQL
 
+SELECT OrderID, OrderDate
+FROM Orders
+WHERE OrderDate >= `2024-01-01`;
+
 ```
+
+This helps you focus on just the recent orders than sifting through your entire order history.
+
+#### Sorting with ORDER BY
+
+Data organization is crucial for analysis and reporting.
+The `ORDER BY` clause helps you arrange your results in a meaningful sequence, must like how you might sort a spreadsheet by different columns.
+You can sort in ascending order (A to Z, lowest to highest) or desending order (Z to A, highest to lowest).
+
+For instance, you could use the following query if you're preparing a display of your most expensive books:
+
+```SQL
+
+SELECT Title, Price
+FROM Books
+ORDER BY Price DESC;
+
+```
+
+The query arranges books from highes to lowest price, perfect for identifying your premium inventory.
+Sometimes you need to sort by multiple criteria, like when reviewing orders by date and amount:
+
+```SQL
+
+SELECT OrderID, OrderDate, TotalAmount
+FROM Orders
+ORDER BY OrderDate DESC, TotalAmount DESC;
+
+```
+
+This organization is particularly useful for financial reports, showing your most recent and highest value orders first, then organizing lower value orders within each date and amount:
+
+**Exam Tip**
+
+Pay attention to how different SQL clauses work together to filter and sort data.
+Understanding their interaction is key to writing effective queries.
+
+**EOET**
+
+### Modifying Data
+
+While retrieving data is important, databases need to be kept up-to-date as your business operates.
+SQL provides three main ways to modify your data: adding new records (`INSERT`), changing existing records (`UPDATE`), and removing old records (`DELETE`).
+
+#### Adding records with INSERT
+
+When new books arrive at your store, you need to add them to your database.
+The `INSERT` statement handles this task.
+Think of it as filling out a form for each new book.
+You specify which information (columns) you're providing and then give the actual values:
+
+```SQL
+
+INSERT INTO Books (Title, Author, Price)
+VALUES ('Azure Data Fundamentals', 'Michael John Pena', 59.99);
+
+```
+
+This is like creating a new catalog entry for a single book.
+But what if you recieve a shipment of multiple books?
+SQL allows you to add several records at once, saving time and effort:
+
+```SQL
+
+INSERT INTO Books (Title, Author, Price)
+VALUES
+    ('Azure Data Fundamentals', 'Michael John Pena', 59.99);
+    ('Azure Cosmos DB Designs and Practices', 'Mike Johnson', 49.99);
+
+```
+
+This bulk insert is particularly useful during inventory updates or when importing data from another system.
+
+#### Modifying records with UPDATE
+
+Prices change, errors need to be corrected, and information needs to be updated.
+These are all situations where the `UPDATE` statement comes into play.
+Think of `UPDATE` as editing an existing record in your database.
+It's crucial to be precise about which records you want to change, which is why the `WHERE` clause is so important here.
+
+For example, to update the price of a specific book
+
+```SQL
+
+UPDATE Books
+SET Price = 34.99
+WHERE BookID = 1001
+
+```
+
+The `WHERE` clause ensures that you only change the intended book's price.
+You can also make broader changes, like applying a storewide discount to all premium books:
+
+```SQL
+
+UPDATE Books
+SET Price = Price * 0.9
+WHERE Price > 50.00;
+
+```
+
+This automatically calcualated and applies a 10% discount to all books currently priced over $50, saving you from having to update each price manually.
+
+#### Removing records with DELETE
+
+Over time, databases can accumulate outdated or unnecessary records.
+The `DELETE` statement helps you clean up your database by removing records you no longer need. 
+However, because deletion is permanent, it's crucial to be extremely careful with your `WHERE` clause to ensure that you only remove the intended records.
+
+The following code removes a specific order that was canceled:
+
+```SQL
+
+DELETE FROM Orders
+WHERE OrderID = 5001;
+
+```
+
+You might also need to perform routine cleanup, like removing old orders to maintain system performance:
+
+```SQL
+
+DELETE FROM Orders
+WHERE OrderDate < '2023-01-01';
+
+```
+
+This removes all order from 2022 and earlier but keeps your recent order history intact.
+Always double-check your `WHERE` clause before executing a `DELETE` statement, as recovering deleted data can be difficult or impossible.
+
+#### Visualizing your SQL operations
+
+The SQL operations we've covered--`SELECT`, `INSERT`, `UPDATE` and `DELETE`-- form the basic building blocks for interacting with your database.
+Each operation follows a specific pattern, making them systematic and predictable once you understand their structure.
+
+Figure below illustrates the decision flow for each SQL operation.
+Starting from the top, you first choose which operation you need based on your goal:
+
+- If you need to view data, the `SELECT` path guides you through choosing columns, selecting your table, adding any filtering conditions, and finally sorting your results.
+- To add new data, the `INSERT` path shows that you'll need to specify your target table, list the columns, and provide the values.
+- When changing existing data, the `UPDATE` path leads you throug specifying the table, setting new values, and adding conditions to identify which records to update.
+- For removing data, the `DELETE` path demonstrates the importance of specifying both the table and the `WHERE` clause to identify which records to remove.
+
+![Common SQL operations](image-8.png)
+
+So far, we've worked with single tables in our examples.
+However, most real databases store related information across multiple tables.
+To get a complete picture of your data, you'll often need to combine information from different tables, and that's where `JOIN` operations comes in.
+
+### Joining Tables
+
+Most production-running databases store related information across multiple tables.
+This separation of data is intentional: it helps maintain data integrity and reduces redundancy.
+For example, instead of storing a customer's complete information with every order they make, we store customer details once in a `Customers` table and link it to multiple orders in an `Orders` table.
+
+To get a complete picture of your data spread across these tables, you need `JOIN` operations.
+The most common types include:
+
+`INNER JOIN`
+    Returns only matching records from both tables.
+
+`LEFT JOIN`
+    Returns all records from the left table, plus matches from the right.
+
+`RIGHT JOIN`
+    Returns all records from the right table, plus matches from the left.
+
+`FULL OUTER JOIN`
+    Returns all records from both tables.
+    For example, an `INNER JOIN` between Orders and Customers shows only orders with valid customers, while a `LEFT JOIN` would show all orders even if customer data is missing.
+
+Think of `JOIN` as a way to temporarily combine tables based on their relationships.
+For instance, when processing orders, you might want to see both order details and customer information in a single view.
+
+Here's how you can combine order and customer information:
+
+```SQL
+
+SELECT Orders.OrderID, Customers.Name, Orders.OrderDate
+FROM Orders
+JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+```
+
+This query connects each order with its corresponding customer using the `CustomerID` that's common to both tables.
+The result gives you a comprehensive view showing the order ID, the customer's name, and when they placed the order-- information that orginally lived in seperate tables.
+
