@@ -92,4 +92,7 @@ Understnding these types and their appropriate use cases is crucial for designin
 
 When most people think about cloud storage, they're thinking about block blobs without realizing it.
 These versatile storage containers handle everything from simple text files to complex multimedia content, making them the backbone of most cloud stroage solutions.
-The genius of block blobs 
+The genius of block blobs lies in their approach to handling large files.
+Instead of trying to upload or download entire files at once, they break them down into manageable chunks called *blocks*.
+
+This block-based approach transforms how we handle large-scale data transfers.
