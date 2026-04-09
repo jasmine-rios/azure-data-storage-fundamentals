@@ -410,3 +410,19 @@ Rememebr, while certification knowledge provides a strong foundation, success in
 The stories and experiences shared here represent just a small sample of the rich learning opportunties you'll encounter as you apply your knowledge in practice.
 
 In the next chapter, we'll explore Azure's NoSQL and big data solutions, where you'll see how services like Cosmos DB complement the relational databases we've discussed here, providing differnt approaches to data storage and processing for modern applications.
+
+# Part III. Nonrelational Data on Azure
+
+Modern application rarely live on relational storage alone. This part broadens your perspective to the specialized storage modalities that optimize cost, scalability, and latency for unstructured content, schema-less entries, asynchronous processing, and globally distributed operational data.
+You'll learn how Azure Storage services provide foundational primitives and how Azure Cosmos DB delivers low-latency, globally replicated data with tunable consistency.
+
+- Chapter 7 "Azure Storage Solutions", classifies storage services--object (Blob), table, quenue, and file--explaining access characteristics, durability guarentees, and when each pattern fits (or doesn't fit).
+It emphasizes selecting the lightest viable abstraction rather than forcing database smemantics into object stores.
+- Chapter 8 "Azure Cosmos DB", examines what changes when data distribution, partioning, consistency trade-offs, and elasticity throughout become primary design drivers.
+You'll see how partition key desing and request unit (RU) budgeting influence both performance and spend.
+
+After completeing this part of the book, you should be able to map workload access patterns to their storage modality, articulate the consequences of a poor Cosmos DB partition strategy, and justify consistency level selection based on business tolerance for stateleness versus latency/
+
+Common mistakes surfaced here include adopting Cosmos DB without having a genuine need for global distribution, selecting a partition key that causes hot partitions, over-specifying strong consistency, and treating Blob Storage like a query engine.
+
+Exam Alignment: Expert scenario-driven differentiation questions about storage types and high-level Cosmos DB characteristics.
