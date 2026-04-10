@@ -213,4 +213,422 @@ A stored video might start in the Hot tier during a marketing campaign, move to 
 This movement can even be automated through lifecycle management policies, ensuring optimal cost efficiency without manual intervention.
 
 The figure illustrates the inverse relationship between storage and transaction costs across Azure's storage tiers.
-The vertical arrangement shows the progression from the Hot storage at the top, through Cool storage in the middle, to Archive storage 
+The vertical arrangement shows the progression from the Hot storage at the top, through Cool storage in the middle, to Archive storage at the bottom.
+The dollars signs ($) on the left side represent storage costs, which decrease in size as we move down through the tiers, indicating lower storage costs for cooler tiers.
+
+Conversely, the dollar signs on the right side represent transaction costs, which increase in size as we move down through the tiers, demonstrating the higher costs associated with accessing data in cooler storage tiers.
+This visual representation highlights the fundamental trade-off in Azure's tiered storage system: as storage costs decrease in cooler tiers, the cost of accessing that data increases.
+
+![Storage and transaction cost relationship](image-14.png)
+
+As we conclude our exploration of storage tiers, it's clear that effective data management in the cloud requires more than just storage space.
+It demands a thoughtful approach to data lifecycle management.
+This brings us to our next topic: the advanced security features that protect your data across all tiers and access patterns.
+
+### Security Features of Blob Storage
+
+In today's digital landscape, storing data in the cloud is just the beginning.
+Protecting it is equally crucial.
+As organizations move their most sensitive information to the cloud, security can no longer be an afterthought or a simple checkbox exercise.
+Azure Blob Storage approaches security as a fundamental design principle, weaving protection into every layer of the storage system.
+
+#### Encryption: Protecting data at rest and in motion
+
+The journey of data through Azure Blob Storage is like a carefully guarded secret being passed through a series of secure channels.
+From the moment data enters the Azure ecosystem until it's retrieved, it never exists in an unprotected state.
+This comprehensive protection begins with encryption at rest, a process so seamless that most users never even realize it's happening.
+
+Storage Service Encryption (SSE) automatically encrypts every byte of data written to Azure Blob Storage using 256-bit AES encryption--one of the strongest encryption standards available.
+This encryption happens automatically, requiring no changes to your applications or workflows.
+It's like having an invisible security guard who ensures that every piece of data is secured before it's stored.
+
+Encryption can be applied at different scopes: account-level encryption (default, applies to all data), container-level options for specific requirements, and individual blob encryption for granular control.
+
+Organizations that need additional control over their encryption keys can choose between several options.
+Some perfer to let Microsoft manage the encryption keys entirely, similar to letting a bank handle the security of a safety-deposit box.
+Others opt for customer-managed keys through Azure Key Vault giving them the ability to control and rotate encryption keys as needed.
+The most security-conscious organizations might choose to provide their own encryption keys, maintaing complete control over who can access their data.
+
+But protection doesn't stop when data needs to move.
+Like an armored car protecting valuable in transit, Azure automatically encrypts all data moving to and from Blob Storage using TLS/SSL protocols.
+This ensures that even if someone were to intercept the data in transit, they wouldn't be able to read it.
+
+As we secure our data both at rest and in motion, we must also consider who should have access to it.
+This brings us to Azure's sophisiticated system for controlling access to stored data.
+
+#### Role-based access control: The digital gatekeeper
+
+In the physical world, organizations use keycards and security badges to control who can access different areas of a building.
+Azure's role-based access control (RBAC) brings this concept to the cloud, but with far more sophistication and granularity.
+Instead of simple yes/no access decisions, RBAC allows organizations to define exactly what actions each user or application can perform on specific resources.
+
+This granular control becomes particularly powerful when integrated with Azure Active Directory.
+Imagine a large media company managing thousands of digital assets.
+Designers might need full access to their project files, while external partners should only view final deliverables.
+Marketing teams might need to update product images, while the legal department requires read-only access to all content for compliance reviews.
+RBAC makes these complex permission scenarios not just possible but also manageable.
+
+**Exam Tip**
+
+Understanding RBAC is crucial for the DP-900 exam, as it represents a fundamental shift from traditional file permissions to cloud native security models.
+
+**EOET**
+
+But what about scenarios where you need to grant temporary access to contractors or allow limited-time downloads for customers? This is where shared access signatures come into play.
+
+#### Shared access signatures: Temporary keys to your data kingdom
+
+Shared access signatures (SAS) solve one of the most common challenges in data sharing: how to grand limited, temporary access to specific resources without compromising security.
+Think of SAS like a digital hotel key card--it provides access only to specific areas, works only for a predetermined time period, and can be revoked if needed.
+
+The flexibility of SAS becomes clear when we consider real-world scenarios.
+A photographer studio might generate SAS URLs that allow clients to download their photos for a week after a session.
+A research institution could provide temporary upload access to specific containers for external collaborators.
+A media company might generate SAS tokens that allow its content delivery network to access video files while preventing direct public access.
+
+As organizations implement these security features, they need tools to monitor and respond to potential threats.
+This brings us to Azure's advanced threat protection capabililtes.
+
+### Managing the Data Lifecycle
+
+One of Blob Storage's most powerful features is its tiered access system, as mentioned in the previous sections.
+Think of it like organizing your closet: frequently worn clothes stay easily accessiblem seasonal items go into storage boxes, and rarely used items move to the attic.
+Similarly, Azure's Hot tier provides immediate access for actively used data, the Cool tier offers cost savings for infrequently accessed data, and the Archive tier provides the most economical storage for rarely needed information.
+
+The real innovation lies in how easily data can move between these tiers.
+A retail company might store current product images in the Hot tier for quick website access, move last season's images to Cool storage, and archive photos of discontinued products.
+This automated lifecycle management ensures that you're never paying more than necessary for storage while maintaining appropriate access levels for different data types.
+
+Having explored how Blob Storage handles unstructured data, let's turn our attention to a unique challenge: providing traditional file shares in the cloud.
+This is where Azure File Storage comes into play, offering familiar file sharing capabilities with cloud native advantages.
+
+### Azure File Storage
+
+The transition to cloud storage often raises a crucial question: "How will we share files across our organization?"
+While Blob Storage excels at handing large-scale unstructured data, organizations still need the familiar collaborative environment that traditional file shares provide.
+Azure File Storage briges this gap by bringing the well-understood world of network file shares into the cloud era, combining the familarity of traditional file servers with the scalability and resilience of cloud computing.
+
+Figure shows how Azure File Storage is organized, much like a digital filing cabinet in the cloud.
+At the top level, we have a Storage Account, which acts as the main container for all your files.
+Inside this, there are two types of file-sharing space: an SMB File Share (which works with Windows, macOS, and linux systems that support the SMB 3.0 protocol) and an NFS File Share (designed for Linux systems).
+
+The SMB side contains familiar elements like Config Files and Shared Documents folders, along with a settings file.
+Meanwhile, the NFS side stores Linux-specific items like Linux Data and App Mounts, plus a configuration file.
+At the bottom of the diagram, we can see three different ways to access these files: through Windows Mount, Linux Mount, or the REST API.
+This setup allows users to work with their cloud files just as easily as they would with files on their local computer, regardless of which system they're using
+
+![File storage architecture](image-15.png)
+
+### Understanding Cloud File Shares
+
+When organizations first encounter Azure File Storage, they often see it merely as a network drive in the cloud.
+While this is technically accurate, it dramatically understates the transformation that occures when file sharing moves to the cloud.
+Traditional file servers required careful planning, regular maintenance windows, and complex backup solutions.
+Azure File Storage elimates these constraints while adding capabilities that would be difficult or impossible to implement on premises.
+
+Consider how file sharing typically works in a traditional office.
+You have a file server in your building, connected to your local network, with mapped drives that employees can access.
+This works well until you need to support remote workers, open new offices, or scale beyond your server's capacity.
+Azure File Storage transforms this model by making your file shares globally accessible while maintaining the simplicity of mapped network drives
+
+**Exam Tip**
+
+For the DP-900 exam, understand that Azure File Storage isn't just a lift-and-shift of traditional file servers.
+It's a reimagining of file sharing for the cloud era.
+
+### SMB and NFS: Speaking Your Language
+
+Azure File Storage's support for industry-standard protocols represents more than just technical compatibility.
+It's a bridge between traditional IT infrastructure and modern cloud services.
+The Server Messge Block (SMB) protocol, familiar to Windows users as the backbone of network file sharing, and the Network File System (NFS) protocol, beloved in the Linux world, form this foundation of this bridge.
+
+#### The power of SMB integration
+
+SMB support in Azure Files goes far beyond basic file sharing.
+Modern SMB features like protocol encryption, indentity-based authentication, and persistent handles enable sophisicated scenarios that weren't possible with traditional file servers.
+For example, multiple applications can maintain open handles to the same file while Azure manages the complexity of coordinating these accesses--crucial for applications that need to maintain file locks across multiple instances.
+
+Consider a financial services company that needs to process thousands of transaction records daily.
+Its Windows-based processing applications can directly access files in Azure File Storage as if they were on a local drive, while Azure handles the underlying complexity of ensuring data consistency and managing concurrent access patterns.
+
+#### NFS and Linux integration
+
+The addition of NFS support transforms Azure File Storage into a truly cross-platform solution.
+Linux systems can mount Azure File Shares natively, enabling scenarios like hosting home directories for Linux users or sharing data between Linux-based application servers.
+This become powerful in hybrid scenarios where organizations need to maintain consistent file access across both on-premises and cloud environments.
+
+**Real-World Scenario**
+
+A media production company uses NFS shares in Azure Files to store raw footage accsesible to both it's on-premises editing workstations and cloud-based rendering farm.
+The same data is available everywhere without complex replication schemes.
+
+**EORWS**
+
+### Adcances Features that Transform File Sharing
+
+Here are some of the advanced features of Azure File Storage that make it an enterprise-grade solution to most file sharing scenarios.
+
+#### Snapshots: Time travel for your files
+
+Azure File Storage's snapshot capability changes how organizations approach file protection and version control.
+Unlike traditional backup systems that require seperate infrastructure and complex scheduling, Azure File Share snapshots provide near-instantaneous, point-in-time copies of your entire file share with minimal storage overhead.
+
+Think of snapshots like photographs of your entire filesystem as specific moments in time. When someone accidently deletes an important file or makes unwanted changes, recovereing the previous version becomes as simple as browsing through these snapshots.
+This capability transforms disaster recovery from a complex IT operation into a self-service function that users can often handle themselves.
+
+The real power of snapshots emerges in scenarios like:
+
+- Protecting against ransomware by maintaining clean copies of files
+- Supporting development and testing by providing consistent filesystem states
+- Enabling file-level recovery without full share restoration.
+- Maintaing point-in-time copies for compliance requirements.
+
+Not that Azure File Storage supports up to 200 snapshots per share.
+While snapshots use incremental storage (only changed blocks consume space), consider the cumulative overhead when planning retention policies.
+Snapshot operations may also impact performance during creation, so schedule them during low-usage periods when possible.
+
+#### Identity and access management
+
+Security in Azure File Storage represents a sophisiticated evolution of traditional file share permissions.
+While maintaing the familar concepts of share- and file-level permissions, it adds cloud native capabilities that address modern security challenges.
+
+Azure Files also preserves NTFS ACLs when used with Windows systems, maintaining familiar permission structures that IT administrators already understand.
+
+#### Microsoft Entra ID integration
+
+Integration with Azure AD transforms how organizations manage file access.
+Instead of maintaining separate file share credentials, users can access files using their organizational identity--the same credentials they use for Microsoft 365 or other Azure services.
+This integration enables:
+
+- Single sign-on for file share access
+- Conditional access policies that can restrict file share access based on device state or location
+- Detailed audit logging of file access patterns
+- Granular permission management through Azure AD groups
+
+Consider how this works in practice: a global organization can implement policies that restrict sensitive file access to specific office locations or require multifactor authentication for remote access.
+All of this happens transparently to users, who simply see their mapped network drives as always.
+
+#### Scale and performance
+
+Azure File Storage's architecture enables scenarios that would be challenging with traditional file servers.
+Shares can scale to handle:
+
+- Thousands of concurrent connections
+- Petabyte of data
+- Millions of files
+- Global access patterns
+
+The serivce automatically handles load balancing, storage optimization, and performance monitoring, allowing organizations to focus on using their file shares rather than managing infrastructure.
+
+**Exam Tip**
+
+While Azure Files Storage can handle massive scale, understanding its performances tiers and limits is crucial for optimal application design.
+The DP-900 exam often tests understanding of when to use premium versus standard files shares.
+
+### Azure File Sync: Extending to Hybrid Scenarios
+
+Many organizations aren't ready to completely abandon their on-premises file servers, despite the tremendous benefits of cloud storage.
+Perhaps they have applications that must remain local or users who need the fastest possible file access.
+Azure File Sync elegently bridges this gap, creating a hybrid environment that combines the best of both worlds.
+
+Think of Azure File Sync like having a smart replication system that keeps your on-premises file servers in sync with Azure File Storage.
+It is like how your smart phone keeeps photos synchronized with cloud storage, but at an enterprise scale and with sophisiticated caching capabilities.
+This synchronization happens automatically and bidirectionally, ensuring that users always have access to their files through whichever path makes the most sense for their location and needs.
+
+#### Cloud tiering: Intelligence at the Edge
+
+One of File Sync's most powerful features is cloud tiering.
+Cloud tiering can be configured based on last access time, file age, or free space policies.
+Instead of simply copying all files everywhere, it intelligently manages which files are stored locally and which remain cloud only.
+Frequently accessed files stay cached on local server for fast access, while rarely used files are replaced with shortcuts that point to their cloud copies.
+This approach dramatically reduces the storage requirements for on-premises servers while maintaing access to the full file set.
+
+**Real-world scenario**
+
+A global engineering firm uses Azure File Sync to maintain consistent project files across offices worldwide.
+Each office had a local file server for fast access to current projects, while completed projects are automatically tiered to the cloud.
+When an old project needs review, its files are retrieved on demand, eliminating the need for massive local storage at each site.
+
+#### Disaster recovery simplified
+
+Azure File Sync transforms how organizations approach disaster recovery for file servers.
+Instead of mainting complex backup systems and dealing with tape libraries, organizations can quickly restore file servers by simply installing File Sync on a new server and connecting it to their Azure file share.
+The system automatically pulls down the most frequently accessed files first, ensuring that critical data is available quickly while less urgent files sync in the background.
+
+Consider how this plays out in a real distaster recovery sceantio.
+If a file server fails, IT can:
+
+1. Deploy a new server (phyiscal or virtual).
+2. Install the File Sync agent.
+3. Connect to the exisiting sync group.
+4. Have critical files available within minutes.
+
+The entire process can be completed in hours rather than the days it might take to restore from traditional backups.
+
+### Managing at Scales
+
+As organizations grow, managing file server across multiple locations becomes increasingly complex.
+Azure File Sync includes centralized management capabilties that help IT teams:
+
+- Monitor sync health across all servers.
+- Track storage usage and tiering efficency.
+- Managed sync groups and cloud endpoints.
+- Configure namespaces and conflict resolution policies.
+
+This centralized control plan transforms what would traditionally be a complex distributed system into a cohesive, manageable service.
+
+While File Storage excels at handling traditional file sharing scenarios, organizations often need different approaches for storing structured data.
+This brings us to Azure Table Storage, which offers a unique solution for storing large amount of structure data without the constraints of traditional databases
+
+## Azure Table Storage
+
+In the world of data storage, not everything fits neatly into files or traditional databases.
+Consider an IoT scenario where millions of devices send temperature readings every few minutes, or a product catalog where each item might have completely different attiributes.
+These scenarios demand a different approach--one that's both scalable and flexible.
+Azure Table Storage provides this alternative, offering a NoSQL data store that combines the simplicity of tables with the flexibility of schema-less design.
+
+The figure shows the layout of the Azure Table Storage, which provides a different way to store data compared to traditional databases.
+Under the main Storage Account, we see two exmaple tables shown in boxes: a `Products` table and a `Orders` table.
+Each table demonstates how data is stored in a flexible format.
+The `Products` table contains information about electronics items, showing fields like `PartitionKey` (Electronics) and `RowKey` (Laptop-001), along with product details such as `Name` (ThinkPad X1), `Price` ($1299.99) and `Stock` (50).
+Similarly, the `Orders` table shows how order information is stored with its own `ParitionKey` (2024-01), `RowKey` (Order-12345)m and revelant order details like `CustomerID` (C789), Total (2599.98) and Status (Shipped).
+
+At the bottom of the diagram, we see three types of Query Patterns that can be used to access this data: Point Query, Parition Query, and Range Query.
+This shows how users can retrieve information from these tables in different ways depending on their needs.
+
+![Table Storage architecture](image-16.png)
+
+The structure illustrates how Table Storage offers a simple yet powerful way to store differnt types of data without needing to define a rigit structure beforehand, making it perfect for scenarios where data might vary between entries.
+Now let's get into the details of how NoSQL structure works in Azure Table Storage
+
+## Understanding NoSQL in Azure Table Storage
+
+Traditional relational databases require you to define your *schema*--the structure of your data--before you store anything.
+It's like having to decide the exact layout of a filling cabinet before you can start using it.
+But what if different documents need different type of folders? 
+What if you don't know all the types of documents you'll need to store?
+This is where Table Storage's schema-less design shines
+
+### Entities and Properities: A Flexible Foundation
+
+In table storage, data is organized into entities (similar to rows in a traditional database) and properities (similar to columns), but with a crucial difference: each entity can have its own set of propertires.
+This flexibility is transformative for certain types of applications.
+
+Consider an ecommerce product catalog:
+
+- A clothing item might need properties for size, color, and material
+- An electronic device might track voltage, dimensions, and warrenty period.
+- A food item might include nutrional information and expiration date.
+
+
+With Table Storage, each product entity can have exactly the properties it needs--no more empty colummns for irrelevant attributes, and no schema changes when new product types are added.
+
+### Partitiong Strategy: The Key to Performance
+
+Understanding partioning in Table Storage is like understanding how to organize a massive library.
+Just as a library categories and subcategories to make book findable, Table Storage uses partition keys and row keys to organize and locate data efficently.
+This organization isn't just about keeping things tidy.
+It's fundamental to the performance and scalability of your solution.
+
+#### The power of the partition key
+
+Think of a partition key as a major category for your data.
+Just as a library might separate fiction from nonfiction, your partition key creates logical grouping of related entities.
+But this decision impact more than just organization.
+It affects how Azure can distribute and scale your data across its infrastructure.
+
+**Exam Tip**
+
+The DP-900 exam often tests understanding of how partition keys affect performance.
+Rememebr that entities with the same parition key must reside in the same partition, which can become a bottleneck if not designed carefully.
+
+**EOET**
+
+Consider an application tracking temperature reading from sensors across different cities:
+
+- Using the city name as the partition key groups all reading from the same location together
+- This make queries for a specific city's data extremely efficent.
+- However, if one city generates significantly more data, its partition could become a performance bottleneck.
+
+#### Row keys: Ensuring uniquenesss
+
+Within each partition, the row key provides the final piece of the puzzle, ensuring that each entity can be uniquely identified and efficiently retrieved.
+Together, the parition key and row key form a composite key that can quickly locate any entity in your table.
+
+For our temperature sensors example:
+
+- The paritition key is `CityName`
+- The row key is `SensorID_Timestamp`. This structure allows for efficent queries such as:
+    - All reading from a specific city (partition key)
+    - Specific sensor readings in a city (partition key + partial row key)
+    - Exact reading at a specific time (partition key + full row key)
+
+### Query Patterns and Performance
+
+Understanding how to query Table Storage effectively requires a shift in thinking from traditional SQL databases.
+While SQL allows complex joins and arbitrary `WHERE` clauses, Table Storage is optimized for different access patterns.
+
+#### Optimized query patterns
+
+The most efficent queries in Table Storage are those that use the partition key and row key effectively.
+Think of it like having a precise address fro a book in a library--if you know exactly where to look, retrieval is nearly instantaneous.
+
+Efficient query patterns include:
+
+- Point quries using both the parition and row keys
+- Parition scans susing just the parition key
+- Range queries within a parition using the row key range
+
+Example: A weather monitoring system stores millions of temperature reading daily.
+By using the pattern `CityName` for the partition key and `YYYY_MM_DD_HH_mm` for row key, the system can efficently:
+
+- Retrieve all reading for a city (partition scan).
+- Find specific time frame readings (row key range query).
+- Get exact reading at precise moments (point query).
+
+### Advanced query capabilities
+
+While Table Storage may seem simple at first, it supports sophisicated query capabilities when properly designed.
+
+#### Filtering and projection
+
+Just as you might want to retrieve only specific fields from a record, Table Storage allows you to:
+
+- Select specific properties rather than entire entities
+- Filter results based on property values.
+- Combine filters with parition/row key criteria.
+
+#### Continuation tokens
+
+For large result sets, Table Storage provides continuation tokens--like bookmarks that help you pick up where you left off when processing large amounts of data.
+
+### Table Storage versus Cosmos DB
+
+Azure Table Storage shares many key features with Azure Cosmos DB, particularly with its NoSQL API.
+As both are cloud-based NoSQL storage solutions, developers often wonder which service better suits their needs.
+Understanding their similarities helps establish a foundation for making an informed choice between these technologies.
+
+While we'll explore Azure Cosmos DB in depth in the next chapter, it's important to note that the decision betwen these services isn't always a simple either-or choice.
+Many organizations successfully implement both Azure Table Storage and Cosmos DB with their architecture, leveraging each service's unique strengths for different use cases.
+This hybrid approach allows teams to optimize their storage solutions based on specific requirements for different parts of their application.
+
+The decision to use Azure Table Storage versus Azure Cosmos DB typically depends on several key factors.
+Table Storage excels in scenarios requiring simple, cost-effective storage for large volumes of structured data with basic query needs.
+In contast, Cosmos DB is better suited for applications demanding gloabl distribution, complex queries, and guaranteed low latency.
+The choice ultimately comes down to balancing factors like data complexity, scalability requirements, global distribution needs, and budget constraints.
+
+## Bringing it All Togehte: Storage Solutions in Practice
+
+Picture yourself as an architect designing the foundation of a modern digital enterprise.
+Like a well-planned city, Azure's storage services form distinct districts, each serving unique purposes while working in harmony.
+Let's explore how these services come together to create a robust and efficent data ecosystem.
+
+### The Modern Data Estate
+
+Consider MJA Fashion, a rapidly growing ecommerce platform.
+When approaching its storage architecture, the MJA team didn't force all its data into a single storage solution.
+Instead, the team crafted a sophisticate symphony of storage services, each playing its perfect part.
+
+The product images and marketing videos flow naturally into Blob Storage, which excels at handling large, unstructured files.
+Meanwhile, the development team collaborates seamlessly through File Storage, sharing configuration files and documentation as easily as if it were working with a local drive.
+For lightning-fast access to product metadata and user preference, Table Storage serves as a reliable companion, delivering consistent performance at Scale.
