@@ -72,4 +72,173 @@ The platform might configure bounded staleness to allow reads to lag by up to fi
 
 #### Session consistency
 
-Session consistency is perhaps the most practical level for many applications, because it ensures 
+Session consistency is perhaps the most practical level for many applications, because it ensures that a single user always sees their own writes while potentially seeing older data from other users.
+This works paricularly well for user-centric applications.
+Take an ecommerce platform where a customer updates their shopping cart.
+With session consistency, the customer always sees their current cart contents, while other users browsing the site might see slightly older product availability information.
+
+### Understanding Data Modeling in Azure Cosmos DB
+
+Traditional relational database design often begins with creating tables and defining relationships between them.
+Azure Cosmos DB requires a different mindset, one that prioritizes access patterns and query performance over normalized data structures.
+This shift in thinking often challenges developers and database architects who are accustomed to traditional database design.
+
+Consider how you might model a product catalog for an ecommerce platform.
+In a relational database, you might create separate tables for products, categories, pricing, and inventory.
+Each product would reference these related tables through foreign keys.
+In Azure Cosmos DB, a more effective approach often involves denormalization, embedding related data within a single document:
+
+```JSON
+
+{
+    "id": "product_12345",
+    "name": "Professional Camera XDR",
+    "category": {
+        "id": "electronics",
+        "name": "Electronics",
+        "path": "/electronics/cameras"
+    },
+    "pricing": {
+        "basePrice": 999.99,
+        "currentPrice": 899.99,
+        "discounts": [
+            {
+                "type": "holiday_sale",
+                "amount": 100.00,
+                "validUntil": "2024-02-01"
+            }
+        ]
+    },
+    "inventory": {
+        "totalAvailable": 157,
+        "reservations": 12,
+        "warehouseLocations": [
+            {
+                "id": "SEA-1",
+                "quantity": 89
+            },
+            {
+                "id": "NYC-4",
+                "quantity": 68
+            }
+        ]
+    }
+}
+
+```
+
+This denormalized structure might intially seem inefficent.
+After all, we're storing category information with each product rather than referencing a centralized categories table.
+However, this design offers several crucial advantages in a distributed system.
+First, it eliminates the need for joins, which can be particularly expensive when data is distributed across multiple regions.
+Second, it ensures that all information needed to display a product is available in a single read operation, improving application performance.
+
+## Azure Cosmos DB API Types
+
+When developers first approach Azure Cosmos DB, they often feel overwhelmed by the variety of APIs availble.
+Think of these APIs as different languages that Azure Cosmos DB can speak, each one designed to communciate with different types of applications in their native tongue.
+Just as a skilled diplomat might switch between languages to better commmunicate with different audiences, Azure Cosmos DB adapts its communication style based on your application's needs.
+
+At the heart of this versatile system lies the Azure Cosmos DB core, a powerful global distribution engine surrounded by five specialized API interfaces.
+As shown in the figure below, these interfaces--the NoSQL (core) API, MongoDB API, Cassandra API, Table API, and Gremlin API--act as dedicated communication channels, each connecting directly to the core engine.
+This architecture ensures that regardless of which database "language" you perfer, you're always working with the full power of Cosmos DB's distributed capabilities.
+
+![Azure Cosmos DB API architecture](image-18.png)
+
+Let's explore each of these APIs and understand when to use them in real-world scenarios.
+
+### NoSQL (Core) API in Azure Cosmos DB
+
+The NoSQL API, also known as the *Core API*, is the native language of Azure Cosmos DB.
+Imagine you're building a brand-new application from stratch--this would be your go-to choice.
+It speaks in JSON, a format that developers love for its flexibility and readability.
+Just as you might find it easiest to express yourself in your native language, applications built using the NoSQL API can take full advantage of everything Azure Cosmos DB has to offer without any translarion layer.
+
+**Exam Tip**
+
+Pay special attention to scenarios involving new application development.
+The DP-900 exam often includes questions about choosing between the NoSQL API and other options for greenfield projects.
+When you see questions about upgrading from Azure Table Storage, the Table API is likely the answer, but you should read the question carefully to ensure that it matches your specific scenario.
+
+**EOET**
+
+Let's dive deeper into a real-world scenario to understand the power of the NoSQL API.
+Consider a modern social media platform that needs to handle various types of content.
+Initially, your posts might be simple text updates:
+
+```JSON
+
+{
+    "id": "post123",
+    "type": "text",
+    "content": "Hello world!",
+    "userId": "user456",
+    "timestamp": "2024-02-11T10:30:00Z"
+}
+
+```
+
+But as your platform evolves, you might want to add support for rich media posts:
+
+```JSON
+
+{
+    "id": "post124",
+    "type": "rich_media",
+    "content": "Check out my vacation!",
+    "userId": "user456",
+    "timestamp": "2024-02-11T10:35:00Z",
+    "location": {
+        "city": "Paris",
+        "country": "France",
+        "coordinates": {
+            "lat": 48.8566,
+            "lng": 2.3522
+        }
+    },
+    "media": [
+        {
+            "type": "image",
+            "url": "vacation1.jpg",
+            "caption": "Eiffel Tower"
+        },
+        {
+            "type": "video",
+            "url": "paris_walk.mp4",
+            "duration": "00:02:30"
+        }
+    ],
+    "mood": "excited",
+    "weather": {
+        "condition": "sunny",
+        "temperature": 22
+    }
+}
+
+```
+
+The NoSQL API handles this evolution gracefully--no database schema changes required.
+You can even query across these different post types using SQL-like syntax:
+
+```SQL
+
+SELECT p.id, p.content, p.location.city
+FROM posts p
+WHERE p.type = 'rich_media'
+AND p.location.country = 'France'
+
+```
+
+**Exam Tip**
+
+The DP-900 exam often tests your understanding of querying capabilities.
+Remeber that the NoSQL API supports SQL-like syntax for querying JSON documents, combining the flexibility of NoSQL with the familarity of SQL.
+
+**EOET**
+
+While the NoSQL API is perfect for new applications, what about organizations that have existing MongoDB applications?
+This brings us to our next API, which serves as a bridge between familar MongoDB operations and Azure Cosmos DB's powerful features.
+
+### MongoDB API in Azure Cosmos DB
+
+Have you ever moved to a new city but found a resturant that reminds you of home? That's what the MongoDB API feels like for developers who are familar with MongoDB.
