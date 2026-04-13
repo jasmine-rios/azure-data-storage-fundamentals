@@ -167,4 +167,22 @@ To address diverse ingestion requirements, modern analytics leverages two comple
 
 *Batch ingestion* processes data in chunks, typically on a scheduled basis or when triggered by specific events.
 This approach resembles traditional ETL processes, but they are scaled for much larger volumes.
-Batch processing excels when handling historical data, performing complex transformations, or loading inital
+Batch processing excels when handling historical data, performing complex transformations, or loading inital datasets.
+It prioritizes throughness and completeness over immediacy, often including comprehensive validation and quality checks.
+
+In contrast, *streaming ingestion* processes data continuously as it's generated.
+This approach treats data as an endless flow rather than discrete chunks.
+Streaming excels at capturing time-sensitive information where immediate processing adds significant value.
+Examples include monitoring systems that need to detect anomalies quickly, customer experience applications that adapt to user behavior in real time, and fraud detection systems that must identify suspicious activity before transactions complete.
+
+Most modern analytics architectures incorporate both approaches, recognizing that different data sources and analytical needs requires ingestion patterns.
+A retail analytics system might use streaming ingestion to capture current shopping behavior while using batch processes to load histroical sales records and inventory data.
+These complementary approaches ensure comprehensive data availability while prioritizing timelines for critical information flows.
+
+I'll talk more about batch versus streaming in the next chapter.
+
+### Processing Considerations
+
+With data flowing into our analytics environment through appropriate ingestion mechanisms, the next step is processing--transforming raw information into formats that enable effective analysis.
+This critical middle stage connects ingestion to storage and ultimately to business insight.
+
