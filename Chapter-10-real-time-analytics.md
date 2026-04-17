@@ -460,4 +460,161 @@ The seamless integration of streaming and historical analysis enables use cases 
 Azure Data Explorer particularly excels in scenarios involving high-volume telemetry and log analyics:
 
     Application performance monitoring
-        This leverages ADX to collect and analyze telemetry from thousands of application instances, enabling
+        This leverages ADX to collect and analyze telemetry from thousands of application instances, enabling detection of performance issues, usage patterns, or error conditions.
+        The service's ability to handle billions of daily events while providing interactive query performance enables effective monitoring of large-scale application deployments.
+    
+    IoT platform analytics systems
+        These systems employ ADX to analyze telemetry from massive device fleets, idenifying patterns, anomalies, or maintenance requirements.
+        The service's time-series optimizations and scalable architecture make it ideal for scenarios involving millions of connected device generating continuous data streams.
+    
+    Security monitoring systems
+        These increasingly use ADX to analyze authentication events, network traffic logs, and security signals at scale.
+        The service's pattern matching capabilities and performance with high-cardinality datasets enable sophisticated threat hunting and anomaly detection across enterprise security telemetry.
+
+For organizations with demanding telemetry analysis requirements, Azure Data Exploreer offers a compelling combination of scalability performance and specialized capabilities.
+As data volumes continue to grow exponentially, particularly in IoT and application monitoring domains, ADX provides a future-proof foundation for extracting actionable insights from massive telemetry streams.
+
+### Azure Event Grid
+
+While not a processing engine itself, Azure Event Grid deserves mention for its central role in reactive real-time architectures.
+Event Grid provides a fully managed event routing service that enables event-driven architectures and real-time integration between systems.
+This service handles the complexity of event distribution, connecting event producers with interested consumers without requiring direct integration between components.
+
+Event Grid serves as the nervous system of many real-time applications, propagating events through the architecture to trigger analyical and operational responses.
+It follows a publish-subscribe model whre sources publish events to topics, and subscribers recieve those events through filtered subscriptions.
+This decoupled approach enables flexible, extensible architectures where new event handlers can be added without modifying existing components.
+
+Several key capabilities make Event Grid valuable for real-time analytical architectures:
+
+    Event-driven triggering
+        This enables analytical processes to execute in response to specific events rather than running on fixed schedules.
+        This reactive approach ensures that analytical resources activate only when relevant events occur, improving efficency while maintaing responsiveness to important signals.
+
+    Filtering mechanisms
+        These allow subscribers to only recieve events matching specific patterns.
+        This targeted delivery ensures that analytical components process only relevant events, reducing unnecessary computation and focusing resources on valuable analyses.
+        Filters can select events based on event types, subject patterns, or data attributes.
+    
+    Reliable delivery with retry logic
+        This ensures that critical events reach their destinations despite temporary network or system issues.
+        Event Grid automatically retries delivery when subscribers are unavailable, maintaing persistence until successful delivery or expiration.
+        This reliability proves crucial for analytical systems that must process every relevant event without gaps.
+    
+    Serverless integration
+        This enables event-driven analytical architectures without managing messaging infrastructure.
+        Event Grid connects natively with Azure Functions, Logic Apps, and other serverless components, enabling sophisticated event processing without dedicated infrastructure.
+        This approach simplifies implementation of real-time analytical workflows triggered by specific events.
+
+These capabilities combine to make Event Grid a foundational server for modern event-driven architectures.
+By seperating event producers from consumers and providing reliable, scalable event routing, Event Grid enables more modular, maintainable, and responsive real-time analytical systems.
+
+Event Grid particularly excels at scenarios requiring event-driven analytics and integration:
+
+    Analytical workflow orchestation
+        This uses Event Grid to coordinate procesing across distributed analytical componenets.
+        When one processing stage completes, it publishes events that trigger subsequent stages, creating dynamic analytical pipelines and respond to actual data flows rather than operating on fixed schedules.
+
+    Cross-service integration
+        This leverages Event Grid to connect operational systems with analytical environments.
+        When important business events occur in operational applications, Event Grid routes notifications to analytical systems for immediate processing, maintaining tight coupling between business operations and analytical insights.
+    
+    Reactive analytics
+        This employs Event Grid to activate specialized analytical proccesses in response to specific conditions.
+        Rather than continuously analyzing all data, these systems conserve resources by performing detailed analysis only when trigger events indicate potentially interesting situations requiring investigation.
+
+As organizations increasingly adopt event-driven architectures, Event Grid's role as a central nervous system for real-time applications becomes even more vital.
+It's combination of reliability, flexibility, and native integration with both operational and analytical services makes it an essential component in modern cloud native analytical platforms.
+
+**Exam Tip**
+
+For the DP-900 exam, understand that Azure Event Grid specializes in event routing and reactive architecture patterns rather than stream processing.
+Its value in real-time analytics comes from orchestrating event-driven workflows and connecting event sources with analytical systems.
+
+### Azure Functions
+
+When real-time analytics requires custom processing logic, Azure Functions provides the ideal serverless compute environment for implementing specialized analytical components.
+Functions enables event-driven code execution without managing infrastructure, allowing developers to focus on analytical logic rather than computing platforms.
+This serverless approach perfecting complements streaming analytics by providing flexible, scalable processing for events flowing through real-time architectures.
+
+Azure Functions integrates directly with many event sources, including Event Hubs, Event Grid, Cosmos DB change feed, and IoT Hub.
+These native bindings enable Functions to trigger automatically when new data arrives, process the information using custom code, and output results to downstream systems.
+The result is responsive event-driven analytics that scales automatically with incoming data volume.
+
+Azure Functions excels at implementing custom processing logic beyond what SQL-based approaches can express, with support for multiple programming languages and automatic scaling based on event volume.
+
+These capabilities make Azure Functions a versatile and powerful component in real-time analytical architectures.
+The combination of event-driven execution, language flexibility, and seamless integration provides a foundation for implementing custom analytical logic that responds immediately to incoming data/
+
+The figure illustrates how Azure Functions enables event-driven analytics within a real-time architecture.
+Event sources on the left generate data that flow through Azure Service Bus, triggering functions that execute custom analyical logic.
+These functions process the events and produce outputs that flow to downstream systems on the right for storage, visualization, or operational action.
+The architecture demonstrates how Azure Functions provides responsive, customizable analytical capabilities that scale automatically with event volume.
+
+![Azure Functions as BI forwarder](image-26.png)
+
+Azure Functions paricularly excels at scenatios requiring custom analytical procesing:
+
+- Custom analytics beyond standard query capabilities leverage Functions to implement specialized algorithms not easily expressed in SQL-like languages.
+Whether applying domain-specific business rules, complex statistical techniques, or proprietary analytical methods, Functions provides the flexibility to execute custom code against streaming data.
+
+- Machine learning inferenceing in real time applies trained models to streaming events through Functions.
+While model training typically occurs in batch environments, Functions can apply these trained models to incoming events, enabling immediate scoring and classification within streaming pipelines.
+This apporach combines the thoroughness of batch training with the responsiveness of real-time application.
+
+- Multistep analytical pipelines employ Functions to orchestrate complex processing across multiple stages.
+Using Durable Functions, organizations can implement sophisticated workflows that maintain state across event boundaries, aggregate information over time windows, or coordinate parallel processing paths within analytical architectures.
+
+As organizations increasingly adopt event-driven architectures for real-time analytics, Azure Functions provides the essential capabilities for implementing custom processing logic without infrastructure management overhead.
+Its combination of scalability, language flexibility, and integration capabilities makes it an ideal platform for extending streaming analytics beyond standard query capabilities.
+
+**Real-World Scenario**
+
+An energy trading company uses Azure Functions to apply proprietary pricing models to streaming market data.
+When new pricing information arrives from exchanges, Functions triggers immediately to recalculate optimal trading positions using algortihms embodying the company's unique market insights.
+These calculations incorporate both the latest prices and contectextual information about market conditions, energy demand forecasts, and current portfolio positions.
+The results flow to trading dashboards that automated trading systems, enabling rapid response to market opportunities that might exist for only seconds before other identify them.
+
+### Azure IoT Hub
+
+For real-time analytics specifically focused on Internet of Things scenarios, Azure IoT Hub provides specialized capabilities beyond general-purpose event ingestion.
+While Event Hubs excels at generic event streams, IoT Hub adds device-centric features essential for IoT scenarios: bidirectional communication, device management, per-device authentication, and protocol support specifically designed for connected devices.
+
+From an analytics perspective, IoT Hub serves as both a data source feeding telemetry into streaming analytics pipelines and an action channel for returning analtical results to devices.
+This bidrectional capability enables closed-loop systems where analytics drives immediate device behavior rather than simply recording information for later analysis.
+The result is responsive IoT systems that adapt to changing conditions based on real-time analytical insights.
+
+Several key capabilities make IoT Hub valuable for real-time IoT analytics.
+
+For example, device telemetry ingestion provides the foundation for IoT analytics, capturing measurements, status information, and event data from connected devices.
+IoT Hub scales to millions of simultaneously connected devices, each sending continuous telemetry streams for analysis.
+This ingestion includes built-in support for protocols common in IoT scenatios, including MQTT, AMQP, and HTTPS.
+
+Built-in routes direct device data to different analytical systems based on messge properties or content.
+This message routing enables sophisticated architectures where critical telemetry flows to real-time processing while routine information takes different paths.
+The routing occurs without device awareness, allowing analytical architectures to evolve independently from device firmware.
+
+Device-to-cloud and cloud-to-device messaging enables bidirectional communication essential for analytical feedback loops.
+After processing device telemetry through analytical pipelines, systems can send commands back to spcific devices through IoT Hub's reliable messaging infrastructure.
+This bidirectional capability enables architectures where analytics directly influence device behavior in near-real time.
+
+Integration with the broader Azure analytics ecosystem connects IoT Hub with Stream Analytics, Functions, Event Grid and other analytical services.
+This native integration simplifies construction of end-to-end IoT analytics pipelines from device telemetry acquisition through processing to insight delivery and action.
+
+IoT Hub particularly excels at scenarios requiring device-aware analytics with feedback loops.
+
+For example, predictive maintenance analytics leverages IoT Hub to collect equipment telemetry, process it through analytical pipelines to detect potential failures, and deliver maintenance commands back to devices or field service systems.
+The bidirectional communication enables both monitoring and intervention within a single architecture.
+
+Smart environment management employs IoT Hub to connect building systems, environmental sensors, and control devices into analytical feedback loops.
+Telemetry from throughout the environment feeds real-time analtics that optimize comfort, energy efficency, and space utilization, with results driving immediate adjustments to building systems.
+
+Connected vehicle platforms use IoT Hub to manage bidirectional communication with vehicle fleets, enabling real-time analytics for route optimization, predictive maintenance, and operation monitoring.
+The device management capabilities provide secure, reliable connectivity even in challenging netowrk environments with intermittent connectivity.
+
+### How to Choose the Right Real-Time Analytics Services
+
+With multiple Azure services supporting real-time analytics, how should organizations select the appropriate components for their specific scenarios?
+Rather than viewing these services as competing alternatives, it's more helpful to recognize how they complement each other with end-to-end analytical pipelines.
+Most real-time analytics solutions combine multiple services, each addressing specific requirements within the overall architecture.
+
+Specific key considerations 
