@@ -657,4 +657,7 @@ Vehicle telemetry flows continuously from thousands of trucks, ships, and aircra
 This telemetry arrives from diverse device types using multiple communication protocols, with update frequencies varying based on criticality and connectivity.
 
 Logistics systems track every step in complex supply chains, from initial order placement through warehouse operations to final delivery.
-These systems generate 
+These systems generate transactional events for shipment status changes, inventory movements, documentation processing, and customer interactions, creating a detailed digital record of physical operations.
+
+IoT sensors throughout warehouses and distribution centers monitor temperature, humidity, motion, access control, and equipment status.
+These sensors detect environmental conditions affecting cargo, security events
