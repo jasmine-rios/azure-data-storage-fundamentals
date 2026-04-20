@@ -648,3 +648,13 @@ Consider TransGlobal Logistics, a fictional international transportation and log
 The organization is implementing real-time analytics in Azure to gain comprehensive visability into its operations, detect potential disruptions, and respond proactively to changing conditions.
 Its journey illustrates the practical application of the concepts we've discussed through this chapter.
 
+### The Data landscape
+
+TransGlobal Logistics faces classic real-time analytics challenges that exemplify why traditional batch approaches no longer suffice.
+It's global operations generate continuous streams of time-sensitive information that requires immediate analysis of maximum value.
+
+Vehicle telemetry flows continuously from thousands of trucks, ships, and aircraft, reporting location, speed, fuel levels, engine performance, cargo conditions, and environmental factors.
+This telemetry arrives from diverse device types using multiple communication protocols, with update frequencies varying based on criticality and connectivity.
+
+Logistics systems track every step in complex supply chains, from initial order placement through warehouse operations to final delivery.
+These systems generate 
