@@ -780,5 +780,5 @@ The most successful organizations explicitly redign operational process to incor
 These pathways might involve human decision makers for complex situations or automated responses for well-understood scenarios.
 
 Skills development across both technical and business teams significantly influences adoption success.
-Technical teams need skills in streaming technologies, event-driven architectures, and real-time visualization approaches that differ from traditional batch analytics. Business team need familiarization with real-time capabilities 
+Technical teams need skills in streaming technologies, event-driven architectures, and real-time visualization approaches that differ from traditional batch analytics. Business team need familiarization with real-time capabilities.
 
