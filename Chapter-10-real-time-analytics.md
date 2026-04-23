@@ -843,4 +843,16 @@ The most successful organizations explicity redesign operational processes to in
 These pathways might involve human decision makers for complex situations or automated responses for well-understood scenarios.
 
 Skills development across both technical and business teams significantly influences adoption success.
-Technical teams need skills in streaming technologies, event-driven architectures, and real-time visualication approaches that differ
+Technical teams need skills in streaming technologies, event-driven architectures, and real-time visualication approaches that differ from traditional batch analytics.
+Business teams need familarization with real-time capabilities, understanding of detection limitations, and training it effective response to the immediate insights these systems provide.
+
+I worked recently with a transportation company whose real-time analytics implementation initially struggled despite solid technical architecture.
+The turning point came when the company established a cross-functional "control tower" team combining technical and operational expertise with explicit authority to respond to emerging situations.
+This organizational innovation, combined with process redesign and targeted training, transformed analytical capabilities into operational improvements that delivered substantial business value.
+
+### Implementation Realities
+
+Beyond the conceptual understanding that certification exams assess, real-world implementations face practical challenges that require pragmatic approaches.
+
+Legacy integration present significant challenges when implementing a real-time analytics alongside existing systems.
+Many operational applications weren't designed for event-driven integration or real-time data exposure, requiring creative approaches to extract
