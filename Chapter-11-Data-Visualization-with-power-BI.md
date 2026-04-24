@@ -232,4 +232,9 @@ Power BI provides sophisticated modeling capabilities that establish the analyti
 
 Relationship management establishes connections betwen different tables in the model, enabling integrated analysis across related information.
 Power BI automatically detects potential relationships based on column names and values, while also providing manual controls for defining more complex connections.
-These relationships enable natural navigation 
+These relationships enable natural navigation across business dimensions- such as analyzing sales by customer, product, and time period--without requiring users to understand the technical joins that connect underlying tables.
+
+The relationship in Power BI support various cardinality types (one-to-many, many-to-one, many-to-many) and filtering behaviors (single direction, bidirecitonal), accommodating complex business models while maintaining performance.
+This flexiblity enables representation of sophisticated business relationships while providing appropriate control over how filters propagate through the model during analysis.
+
+Power BI's tabular modeling approach, based on the Microsoft Analysis Services engine
