@@ -237,4 +237,112 @@ These relationships enable natural navigation across business dimensions- such a
 The relationship in Power BI support various cardinality types (one-to-many, many-to-one, many-to-many) and filtering behaviors (single direction, bidirecitonal), accommodating complex business models while maintaining performance.
 This flexiblity enables representation of sophisticated business relationships while providing appropriate control over how filters propagate through the model during analysis.
 
-Power BI's tabular modeling approach, based on the Microsoft Analysis Services engine
+Power BI's tabular modeling approach, based on the Microsoft Analysis Services engine, organizes data into tables and columns that users can understand without database expertise.
+Rather than exposing technical structures like database schemas, the model presents information in business terms--sales amound rather than `transaction.amount_decimal` and customer name rather than `cust_lname_tx`. This business-oriented representation makes data more accessible to nontechnical users while maintaining the necessary analytical rigor.
+
+The Data Analysis Expressions (DAX) language provides a formula language specifically designed for analytical calculations within tabular models.
+DAX enalbes the definition of calculated columns that dervice new values within tables, measures that calavulate aggregations based on user selections, and calbulated tables that generate new structurs based on exisiting data. 
+Through these calculation capbiliites, Power BI transforms basic data into rich analytical metrics that directly answer business questions.
+
+DAX particularly excels at time intelligence caluclations that analyze performance over time periods, comparisions between different period, and cumulative values across time.
+Functions like `SAMEPERIODLASTYEAR`, `TOTALYTD` and `DATEADD` simplify otherwise complex-time-based analysis, enalbing business users to track performance trends without implementing sophisticated data handling logic.
+These time intelligence capabilities prove especially valuable for monitoring business performance against historical benchmarks and targets.
+
+Advanced modeling features address more complex analytical requirements through sophisiticated capabilities.
+Row-level security restricts data access based on user identity, ensuing that individuals see only information appropriate for their role. 
+Perspectives create focused views of the model for different business purposes.
+Model calculation groups establish reusable calculation patterns.
+Composite models combine imported data with DirectQuery connections to balance performance with freshness.
+These advanced features enable Power BI to support enterprise-scale analytical needs while maintaining appropriate governance.
+
+**EXAM TIP**
+
+For the DP-900 exam, understand that Power BI's modeling capabilities create a semantic layer that translates technical data structures into business-meaningful concepts and calculations, enabling business users to analyze information in familar terms rather than technical structures.
+
+## Visiualization and Analysis
+
+With data connected, prepared, and modeled, Power BI's visualization capabilities transform infomation into interactive insights that reveal patterns and drive decisions.
+Rather than providing just a fixed library of charts, Power BI delivers a comprehensive visualization platform that combines a rich selection of built-in visuals with extensive customization options and an expandable framework for specialized needs.
+
+The built-in visualization library incluses dozens of standard charts and graphs covering the core analytical requirements that most business scenarios demand.
+Bar and column charts for comparing values across categories, line and area charts for analyzing trends over time, scatter, and bubble charts for examining relationships between variables, pie and donut charts for showing composition, tables and matrices for presenting detailed information--these fundamental visuals address the most common analytical needs directly out of the box.
+
+Beyond these standard options, Power BI includes specialized visualizations for particular analytical purposes: maps for geographic analysis, treemaps, and sunbursts for hierachical data, waterfalls for cumulative impact, funnels for sequential processes, gauges, and cards for key metrics, decomposition trees for mulilevel analysis, and many others.
+This specialized library ensures appropriate visualization options for diverse analytical requirements without requiring custom development.
+
+There are diverse visualization in Power BI and are arranged by analytical purpose.
+The top section displays comparison visuals like bar charts, column charts, and radar charts.
+The middle section shows trend visualization including line charts, area charts, and waterfalls.
+The bottom section illustrates relationship visualizations such as scatterplots, treemaps, and network diagrams.
+Each visual type is shown with a small example illustration in the right pane, demonstrating the range of visualization approaches available for different analytical purposes.
+
+Interactive features transform static visualizations into dynamic analytical tools that users can manipulate to explore data from different perspectives.
+Cross-filtering enables selection in one visual to automatically highlight related infomation in other visuals, revealing relationships across different aspects of the data.
+Slicers and filters provide intutive controls for focusing analysis on specific dimensions or values.
+Drill-down capabilities enable navigation from summary information to increasing levels of detail.
+These interactive elements transform the analytical experience from passive consumption to active exploration.
+
+The custom visualization framework extends Power BI's capabilities through an open platform for specialized visuals.
+The marketplace includes hundreds of custom visuals created by Microsoft and third-party developers, addressing specialized needs from advanced statistical analysis to industry specific visualizations.
+Organizations can also develop proprietary visuals using the open source Power BI Custom Visuals SDK, enabling visualization approaches tailored to specific business requirements or corporate design standards.
+
+Visual formatting options provide extensive control over the appearance and behavior of visualizations, enabling reports that align with organizational branding while maximizing analyitical clarity.
+Power BI includes comprehensive settings for colors, fonts, labels, backgrounds, borders, and other visual elements, along with responsive layout capabilities that adapt to different screen sizes and form factors.
+These formatting options balance aesthetic quality with analytical functionality, ensuring that reports are both visually appealing and informative.
+
+AI-assisted analysis enhances traditional visualization with AI capabilities that automatically discover patterns and explain trends.
+Power BI can automatically identify key influencers driving a metric, detect anomalies in time-series data, perform decomposition analysis to explain changes over time, and generate natural language summaries of key findings.
+These AI features help users discover insights they might otherwise miss, accelerating the analysis process while reavling deeper patterns within the data.
+
+### Sharing and Collaboration
+
+The value of analytical insights emerges when they reach the people who take action based on the information.
+Power BI provides comprehensive capabilities for sharing and collaborating on analyses, ensuring that insights flow effectively throughout the organization to drive better decisions.
+
+Power BI workspaces serve as collaborative containers for organizing and managing related content.
+These workspaces function as shared environments where teams can collectively develop, publish, and maintain reports, dashobards, and datasets.
+Access controls determine who can contribute to the workspace versus who can simply view its contents, enabling appropriate governance while promoting collaboration among analytical teams.
+Workspaces typically align with organizational structures like departments or project teams, creating natural boundaries for content organization and security.
+
+Dashboards provide curated views that combine visualizations from multiple reports into unified analytical surfaces.
+Unlike reports, which typically organize multiple visualizations about a single business area, dashboards integrate the most important visuals from different reports to provide comprehensive overviews.
+These dashvoards enable exexutives and managers to monitor key metrics across business functions without navigating multiple reports, simplifying high-level performance monitoring while providing paths to detailed analysis when needed.
+
+Apps package related content for distribution to broader audiences throughout the organization.
+A Power BI app might include multiple reports and dashboards organized into a coherent experience for a particular user group or analytical purpose.
+Apps support phased release management where content developers can stage and test changes before updating the production version, ensuring quality while enabling continous improvement.
+For consumers, apps provide a curated entry point to related content without requiring navigation through the broader workspace structure.
+
+Mobile experiences ensure that insights remain accessible regardless of user location.
+Power BI's mobile applications provide optimized interfaces for phones and tablets, with responsive layouts that adapt visualizations to smaller screens and touch-based interaction.
+Mobile annotations allow on-the-go collaboration, enabling field personnel to highlight findings or raise questions direcly within the mobile experience.
+Location-based filtering can automatically focus reports on the user's current geography, a capability that is particularly valuable for regional sales or service teams.
+
+**Exam Warning**
+
+The DP-900 exam may ask about data refresh and access limitations in different Power BI licensing levels. Remember that free Power BI accounts cannot access refresh capabilities in Power BI Service, while Pro and Premium licenses provide different refresh frequencies and sharing options.
+Know that basic differences between these licensing tiers from a technical capability perspective.
+
+**EOEW**
+
+Embedding capabilities integrate Power BI analytics directly into operational applications, portals, and websites.
+Rather than requiring users to switch contexts between their operational systems and analytical tools, embedding delivers insights within the applications people already use daily.
+This integration ranges from simple iframe embedding in internal portals to sophisticated integration in customer-facing applications using the Power BI API.
+The embedded approach particularly benefits operational users who need analytical context for transactional decisions without switching to separate analytical tools.
+
+Export and integration options connect Power BI with other productivity and collaboration tools.
+Users can export visualizations and data to Excel for additional analysis, PowerPoint for presentations, or PDF for distribution.
+Integration with Microsoft Teams embeds reports directly in collaborative workspaces, enabling data-driven discussions without leaving the team environment.
+These integration capabilities ensure that insights flow freely between analytical and productivity contexts, enhancing collaboration around data-driven decisions.
+
+## Data Models in Power BI
+
+While visualizations provide the visible interface that users interact with, the underlying data model determines what questions they can effectively answer and how intuitively they can navigate between different analytical perspectives.
+Understanding how Power BI implements data modeling helps explain why some reports provide fluid, responsive analytical experiences while others feel limited or fragmented.
+
+### Model Structures and Relationships
+
+The foundation of effective Power BI modeling lies in properly structured tables connecte through well-defined relationships.
+These structures determine how data elemeents relate to each other and how users can navigate between different analytical dimensions during exploration.
+
+The star schema design represents the most common and effective approach for analytical models in Power BI.
