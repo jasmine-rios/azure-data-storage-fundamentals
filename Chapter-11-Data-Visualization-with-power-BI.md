@@ -346,3 +346,194 @@ The foundation of effective Power BI modeling lies in properly structured tables
 These structures determine how data elemeents relate to each other and how users can navigate between different analytical dimensions during exploration.
 
 The star schema design represents the most common and effective approach for analytical models in Power BI.
+This design organizes data into fact tables containing quantiative measurements (like sales amounts or production quantities) and dimension tables containing the contextual attributes for analyzing those measurements (like products, customers, or time periods).
+The fact tables connect to dimension tables through relationships, creating a starlike structure with the fact table at the center connected to surrounding dimension tables.
+
+The star schema approach aligns perfectly with how users naturally think about analysis--examining measurements (facts) across different business dimensions.
+It enables intutive exploration where users can seamlessly analyze sales by product category, then by customer segment, and then by customer segment, and then by time period, without having to understand the technical relationships connecting these tables.
+The star schema also optimizes performance by clearly seperating the typically large fact tables from the smaller dimension tables that provide analytical context.
+
+For more complex business scenarios, snowflake schemas extend the star approach by normalizing dimension tables into multiple related tables.
+For example, rather than having a single product dimension with all product-related attributes, a snowflaske might seperate product, categories, and manufacturers into distinct tables.
+This normalization can improve data management for rapidly changing dimensions but introduces additional relationship complexity that may impact both performance and user comprehension.
+Power BI supports these more complex structures when necessary while generally recommending star schemas for their analytical clarity and performance characteristics.
+
+Relationship types in Power BI determine how filters propagate between tables during analysis.
+Most relationships follow a one-to-many cardinality where each row in the "one" table can related to multiple rows in the "many" table, but each row in the "many" table relates to exactly one row in the "one" table.
+For example, each product category contains many products, but each product belongs to exactly one category.
+These one-to-many relationships reflect natural business hierachies and enable intutive filtering from the "one" side to the "many" side.
+
+In more complex scenarios, Power BI supports many-to-many relationships where row in each table can relate to multiple rows in the other table.
+For example, each customer might purchase many products, and each product might be purchased by many customers.
+These many-to-many relationships often require bridge tables containing the associations between entities, adding complexity to the model structure.
+While Power BI handles these relationships, they require careful design to maintain performance and analytical clarity.
+
+Filter direction controls how selections in one table affect related tables during analysis.
+By default, filters flow from the "one" side of relationships to the "many" side but not in reverse direction.
+This single-direction filtering prevents unexpected query results where selections in fact table might inadvertently filter dimension tables, causing confusion for users.
+In specific scenarios where bidirectional filtering benefits the analytical experience, Power BI allows explicit configuration of bidirectional relationships, though these require careful consideration due to their performance implications and potential for creating ambiguous filter contexts.
+
+**Exam Tip**
+
+For the DP-900 exam, understand that effective Power BI data models typically follow star schema designs with dimension tables connected to fact tables through one-to-many relationships.
+This structure optimizes both analytical clarity and query performance while enabling analysis in terms that directly align with how organizations measure performance.
+
+Calculated columns derivce new values within tables based on other columns, creating permanently stored results that appear like any other column.
+These calculations might standardize formatting (converting names to proper case), create flags based on conditions (marking high-value customers), or derive new attributes from existing ones (extracting year from date).
+Calculated columns are computed when data refreshes and consume storage within the model, making them appropriate for values that many visualizations will reference or that support row-level filtering.
+
+Measures, by contrast, define aggregations that calculate dynamically based on the current filter context rather than storing predetermined results.
+A measure for "Total Sales" dynamically calculates the appropriate sum based on whatever filters the user has applied--whether viewing all sales, sales for a specific region, or sales for a particular product category in a specific time period.
+This dynamic calculation enables consistent metric definitions that automatically adapt to the user's analytical focus, providing reliable results regardless of visualization context.
+
+The distinction between calculated columns and measures significantly impacts both model performance and analytical flexibility.
+Calculated columns consume storage but offer faster retrieval for frequently used values.
+Measures require computation during analysis but provide more dynamic results that adapy to filtering context.
+Understanding when to use each approach represents a key modeling skill that experienced Power BI developers cultivate through practice and performance testing.
+
+DAX provides the formula language for defining these calculations, offering specific functions for common analytical needs:
+
+    Time intelligence functions
+        These simplify analysis across time periods, enabling comparisons like year-over-year growth, rolling averages, or year-to-date accumulations.
+        Functions like `SAMEPERIODLASTYEAR`, `DATEADD`, and `TOTALYTD` handle the complexity of calander logic enabling business users to track performance trends without implementing sophisticated date manipulation.
+    
+    Filter context functions
+        These control how calculations respond to the current selection state, enabling conditional logic based on user interactions. `CALCULATE` allows explicit modification of context, `ALL` removes filters to provide baseline comparisions, and `FILTER` applies additional conditions within measures.
+        These context functions enable sophisticated analytical patterns that adapt to user explorations paths.
+    
+    Iterator functions
+        These perform row-by-row operations and aggregations beyond simple summation.
+        `SUMX`, `AVERAGEX`, and related functions calculate expressions for each row before aggregating the results, enabling weighted averages, conditional aggregations, and other complex calculations that basic aggregates cannot express.
+        These iterators prove particuarly valuable for financial and statistical analysis requiring nuanced computation logic.
+
+The combination of these calculation capabilities transform raw data into a rich analytical model that directly answers business questions in familiar terminology.
+Rather than requiring users to mentally calculate key metrics from base fields, a well-designed model provides these metrics as predefined measures that enable consistent definition and interpretation through the organization.
+
+### Row-Level Security
+
+As organizations share more broadly through Power BI, controlling who can access specific information becomes increasingly important. Row-level security (RLS) provides a sophisticated approach to data access control, enabling a single report to automatically show different data to differnt users based on their identity or role.
+
+Unlike tradtional security models that control access at the report or dashboard level, RLS operates at the data row level within the model.
+This granular approach enables scenarios where regional manager see only data for their own regions, sales representatives access only their own customer information, or department heads view only their own departmental financials--all from the same report and without creating separate versions for each audience.
+
+The implementation of RLS centers on roles and rules defined withing the data model.
+Security roles define groups of users with similar access requirements, such as "West Region Managers" or "Finance Department Analysts".
+Within each role, DAX filter expressions establish rules that determine which data rows members of that role can access. For example, a region-based rule might specify `[Region] = "West"` or `[Region] = USERPRINCIPAL("Region")`, dynamically filtering based on attributes in the user's organizational profile.
+
+This role-based approach simplifies security management by enabling permission assignment at the role level rather than requiring individual user configuration.
+When organizational changes occur, administrators simply update role membership rather than reconfiguring data access rules.
+For users with multiple access profiles--such as a regional manager who also has global reporting responsibilities--Power BI supports membership in multiple roles, showing all data accessible through any assigned role.
+
+The dynamic filtering provided by RLS operates automatically and transparently during report interaction.
+Users see only the data they have permission to access, with all visualizations, filter, and calculations respecting these security boundaries.
+The security remains enforced regardless of how users interact with reports--whether through the Power BI Service, mobile applications, embedded reports, or exported data--ensuring consistent protection across access methods.
+
+**Real-World Scenario**
+
+A global retail organization implements row-level security in its store performance dashboard based on the organizational hierachy.
+Store managers see data only for their individual locations, district managers view information for all stores in their districts, regional directors access data across their regions, and corporate executives see the complete global dataset.
+This approach delivers personalized analytics to each management level from a single report definition, ensuring consistent metrics and visualization while respecting organizational data access boundaries.
+
+**EORWS**
+
+For the DP-900 exam, understanding the basic concept of row-level security matters more than implementation details.
+Remember that RLS enables a single report to show different data to different users based on their identity, with security enforced at the data row level rather than through seperate reports for different audiences.
+
+### DirectQuery and Import Modes
+
+Power BI offers different storage modes that determine how data is accessed and processed during analysis.
+These modes present important trade-offs between data freshness, query performance, and model size limitations that influence architectural decisions for Power BI implementations.
+
+Import mode represents the defauly and most common approach, where Power BI imports a copy of the source data into its highly compressed in memory storage engine.
+This imported data powers all visualizations and calculations within the report, enabling extermely fast query performance as all data resides in memory in an optimized format.
+The import approach particularly benefits scenarios with moderate data volumes where analytical responsiveness outweigbs real-time data requirements.
+
+Several key advantages make import mode the preferred choice for many scenarios.
+Query performance remains consistently excellend regardless of source system capabilities, as all queries run against the optimized in-memory copy.
+The full Power BI calculation enginer supports sophisiticated DAX expressions and relationships that might not translate to source system queries.
+Users can continue analyzing imported data even when diconnected from source systems, enabling offline scenarios through Power BI Desktop or mobile applications.
+
+However, import mode also presents limitations. Imported data represents a snapshot form the time of refresh rather than live information, creating potential delays between operational changes and their analytical visibility.
+The entire dataset must fit within Power BI's memory limitations (generally 10 GB for Power BI Premium and 1 GB for shared capacity).
+Complex models with numerous tables and relationships may approach these limits, requiring careful optimization.
+Frequent refresh requirements can place substaintial load on source systems and consume significant Power BI resource capacity.
+
+DirectQuery mode takes a fundamentally different approach by leaving data in the source system and translating Power BI interactions into native queries against that source.
+When users interact with visualizations, Power BI dynamically generates queries (typically SQL) that execute directly against the source database rather than against imported data.
+This approach ensures that visualizations always reflect the latest source data while avoiding the need to import potentially massice datasets into Power BI's memory.
+
+This direct approach particularly benefits several scenarios.
+For datasetes too large to practically import into Power BI's memory, DirectQuery provides analytical access without size limitations beyond what the source system can handle.
+When data changes frequenly and analysis requires the very latest information, DirectQuery ensures that visualizations always reflect current values without waiting for scheduled refreshes.
+For organizations with substantial investments in source system optimization, DirectQuery leverages these capabilities rather than duplicating data processing with Power BI.
+
+Like import mode, DirectQuery presents its own trade-offs.
+Query performance depends heavily on source system capabilities, with slow source databases creating potentially frustrating analytical experiences.
+Not all DAX functions and modeling capabilities are available in DirectQuery mode, as calculations must translate into operations the source system can execute.
+Filter operations affect query scope and complexity, sometimes creating performance challenges for highly interactive reports with numerous slicers and filters.
+
+Composite models provide a hybrid approach that combines import and DirectQuery tables within a single model.
+Some tables import their data for optimal performance, while others remain in DirectQuery mode for real-time access or to avoid importing excessively large dimensions.
+This flexivle approach enables architects to make appropriate mode decisions for each table rather than applying a single approach to the entire model.
+Dual storage mode takes this flexibility further by allowing individual tables to operate in both mode simultaneously, dynamically choosing the appropriate mode based on the specific query context.
+
+**Exam Tip**
+
+For the DP-900 exam, understand the fundamental trade-off between import mode (which offers superior performance but with point-in-time data) and DirectQuery mode (which provides real-time data access but depends on source system performance).
+Remember that composite models can combine both approaches within a single analytical solution.
+
+**EOET**
+
+## Visualizations in Power BI
+
+With a comprehensive data model established, visualization represents the final step in transforming raw information into accessible insights.
+Power BI offers a rich library of visualization types, each designed to communicate specific aspects of data effectively.
+Understanding which visualization types best suit different analytical purposes helps create reports that reveal patterns clearly rather than obscuring them behind inappropriate visual choices.
+
+### Choosing the Right Visualization
+
+The selection of appropriate visualizations directly impacts effectively users understand the underlying data.
+Rather than simply choosing visualizations based on aesthetic preferences or variety, effective Power BI development matches visualization types to the specific analytical questions they best address.
+
+Comparison visualizations help users understand differences between values across categories or groups.
+Bar and column charts excel at this purpose, leveraging the human brain's ability to compare the lengths of bars accurately.
+These charts work particularly well for comparing discrete categories like products, regions, or departments.
+For comparisions involving multiple measures across categories, clustered column charts or small multiples might reveal patterns more clearly.
+When comparing current values against targets, bullet charts provide specialized designs that show progress toward goals within the context of performance ranges.
+
+When visualization needs extend beyond simple comparisions to understanding part-to-whole relationships, different approaches become appropriate.
+Pie and donut charts show the composition of a whole divided into categories, though they become difficult to interpret accurately with more than five to seven slices.
+Treemaps provide an alternative that uses nested rectangles sized according to value, enabling visualization of hierachical categories while still showing relative proportions.
+Stacked bar charts combine comparison and composition by showing both total values and their consituent parts, though at the cost of making comparisons between components more difficult.
+
+Trend analysis over time requires visualizations designed specifically for temporal patterns.
+Line charts excel at showing continous trends, making them ideal for metrics tracked over time periods.
+Area charts extend this capability by filling the area below the line, emphasizing cumulative impact or showing stacked components over time.
+When analysis needs to focus on changes between specific time points rather than continuous trends, column charts might prove more effective despite their discrete nature.
+For complex time-based analysis showing both seasonality and long-term trends, small multiples of line charts organized by time period can reveal patterns that single charts might obscure.
+
+Relationship analysis between variable requires specialized visualizations that reveal connections, correlations between variable, optinally using point size and color to incorporte additional dimensions.
+For network relationships between entities, network diagrams show connection patterns that might remain hidden in traditional charts.
+When analyzing how values distribute across ranges, histograms group data into bins to show frequency distributions that reveal central tendendies and outliers.
+
+Geographic analysis presents unique visualization requirements addressed through specialized map visuals.
+Filled maps (choropleth) shade geographic regions based on associated values, effectively showing regional patterns across countries, states, or custom territories.
+Point maps display individual locations as dots or bubbles, optionally sized by associated measures to show both position and magnitude.
+For scenarios involving movement between locations, flow maps connect origins and destinations with lines weighted by volume, revealing transportion patterns or migration flows.
+
+These various visualization types each excel at specific analytical purposes while potentially creating confusion when misapplied.
+An effective Power BI developer matches visualization types to analytical requirements, considering both the question being answered and the characteristics of the underlying data.
+This thoughful matching transforms visualization from mere decoration into a powerful analytical tool that reveals patterns effectively and accurately.
+
+**Exam Tip**
+
+The DP-900 exam often presents sceanrios asking you to indentify the most appropriate visualization type for specific analytical questions.
+Focus on understanding which visualizations best serve different purposes: bar/column charts for comparisons, line charts for trends, scatterplots for relationships, and maps for geographic data.
+Remeber that the best visualization depends on the specific question being answered rather than visual appeal alone.
+
+**EOET**
+
+### Understanding Dashboard and Report Design
+
+Beyond individual visualizations, effective Power BI implementation requires thoughtful organization of visuals into cohesive reports and dashboards.
+This design process transforms collections of individual charts into integrated analytical experiences that guide users through data exploration and understanding.
