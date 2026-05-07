@@ -18,7 +18,7 @@ When organizations consider moving their databases to the cloud, they often face
 Figure below illustates the key decision points when choosing between Azure SQL services.
 Let's explore each option in detail to understand its unique characteristics and ideal use cases.
 
-![The Azure SQL family of choices](image-12.png)
+![The Azure SQL family of choices](assets/image-12.png)
 
 ### Azure SQL Database: Cloud Native Database Solution
 

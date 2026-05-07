@@ -143,7 +143,7 @@ At the heart of this versatile system lies the Azure Cosmos DB core, a powerful 
 As shown in the figure below, these interfaces--the NoSQL (core) API, MongoDB API, Cassandra API, Table API, and Gremlin API--act as dedicated communication channels, each connecting directly to the core engine.
 This architecture ensures that regardless of which database "language" you perfer, you're always working with the full power of Cosmos DB's distributed capabilities.
 
-![Azure Cosmos DB API architecture](image-18.png)
+![Azure Cosmos DB API architecture](assets/image-18.png)
 
 Let's explore each of these APIs and understand when to use them in real-world scenarios.
 

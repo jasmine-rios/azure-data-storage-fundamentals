@@ -70,7 +70,7 @@ A social media company storing billions of user photos needs very different file
 
 The figure below shows the fundamental trade-offs between different file formats like:
 
-![Data File Formats and their trade-offs](image.png)
+![Data File Formats and their trade-offs](assets/image.png)
 
 - CSV (Prioritize human readability and universal compatibility)
 
@@ -301,7 +301,7 @@ Traditional relational databases remain critically important for many scenarios,
 
 The figure blow illustrates how different database types optimize for different priorities. Relational databases prioritize consistency and complex relationships, NoSQL databases emphasize flexibility and scale, and specialized databases optimize for specific workloads like analytics or time-series data
 
-[database-types-and-use-cases](image-1.png)
+[database-types-and-use-cases](assets/image-1.png)
 
 Image description:
 

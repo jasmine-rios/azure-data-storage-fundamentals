@@ -18,7 +18,7 @@ Figure below illustrates the key components of a large-scale analytics architect
 The flow begins with diverse data sources, moving through ingestion and storage layers, followed by processing and serving layers, and culminating with consumption.
 Each step contains specialized components designed to handle specific aspects of analytics.
 
-![Key components of large-scale analytics](image-19.png)
+![Key components of large-scale analytics](assets/image-19.png)
 
 Think of large-scale analytics as the difference between crossing a small pond and crossing an ocean.
 The skills, tools, and planning required are fundamentally different in scale and complexity.
@@ -401,7 +401,7 @@ Developed throug a partnership between Microsoft and Databricks (founded by the 
 Databricks promotes the lakehouse architecture, combining the flexibility of data lakes with the performance and reliability of data warehouses (shown in the figure).
 This approach uses the medallion architecture with bronze (raw), silver (refined), and gold (curated) layers to organize data at different stages of processing.
 
-![Azure Databricks common lakehouse architecture](image-20.png)
+![Azure Databricks common lakehouse architecture](assets/image-20.png)
 
 Azure Databricks brings together several capabilities essential for modern analytics workflows.
 At its core lies an optimized version of Apache Park, the distributed processing engine that enables analysis across clusters of computers rather than single machines.
@@ -440,7 +440,7 @@ Its collaborative workspace is particularly valuable for data science and machin
 While Databricks focueses on code-first advanced analytics, Azure Synapse Analytics takes a different approach by providing an integrated analytics platform that combines multiple technologies under a unified experience.
 It brings together enterprise data warehousing, big data processing, data integration, and analytics into a cohesive service designed to simplify end-to-end analytics development, as shown in the figure.
 
-![Sample large-scale analytics with Azure Synapse Analytics](image-21.png)
+![Sample large-scale analytics with Azure Synapse Analytics](assets/image-21.png)
 
 Synapse Analytics evolved from Azure SQL Data Warehouse, expanding its capabilities well beyond traditional data warehousing.
 At its core, Synapse still provides powerful SQL-based analytics through dedicated SQL pools that leverage maassively parallel processing for performance at scale.
@@ -477,7 +477,7 @@ The unified platform ensures consistent definitions and metrics across both anal
 Microsoft's newest addition to the analytics portfolio represents an evolution in how organizations approach analytics in the cloud.
 Launched in 2023, Microsoft Fabric takes integration to a new level by providing a unified software-as-a-service (SaaS) platform that brings together the entire analytics lifecycle under a single experience and data platform as shown below.
 
-![Microsoft Fabric unified SaaS stack approach](image-22.png)
+![Microsoft Fabric unified SaaS stack approach](assets/image-22.png)
 
 Fabric builds on Microsoft's analytics evolution by unifying previously separate services into an integrated experience that emphasizes simplicity and cohesion.
 As its foundation lies OneLake, a single data lake that serves as a unified storage layer across all analytical workloads.

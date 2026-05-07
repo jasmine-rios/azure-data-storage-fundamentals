@@ -24,7 +24,7 @@ In the traditional environment, database administrators (who manage and maintain
 For example, when a company needed more storage space for its data, a database administrator might have spend weeks going through a lengthy process: researching what computer hardware to buy, getting approval for purchases, waiting for equipment delivery, physically installing the computers in the office server room, setting up the storage the storafe drives for reliability, and installing all the necessary software systems.
 Similarly, data processing specialist (previously called *ETL developers* where *ETL* stands for Extract, Transform, and Load) focused on moving and processing data in scheduled batches using software that had to be installed on computers within their building.
 
-[Role evolution in Azure]](image-4.png)
+[Role evolution in Azure](assets/image-4.png)
 
 Through cloud transformation, these roles have evolved to meet modern demands.
 Azure database administrators now focus on service orchestration, automated management, and security compliance, leveraging cloud capabilities to manage databases at scale.
@@ -404,7 +404,7 @@ The modern data ecosystem requires seamless collaboration between all roles to d
 
 The figure below shows how these roles typically collaborate.
 
-[Simple data roles and their interactions](image-5.png)
+[Simple data roles and their interactions](assets/image-5.png)
 
 Consider a typical enterprise scenario: implementing a customer analytics solution in a retail company.
 This example illustrates how different role collaborate within Azure's ecosystem.

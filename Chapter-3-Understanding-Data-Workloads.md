@@ -21,7 +21,7 @@ The figure below illustrates the fundamental distinction between transactional a
 When you check your bank balance on your phone, transfer money between your accounts, or make a purchase online, you're interacting with *transactional workloads* that must process your request immediately and accurately.
 These systems handle individual transactions one at a time, ensuring that each operation is completed quickly and correctly.
 Your bank's computer system needs to update your account balance instantly, verify you have enough money for a purchase, and record every transaction permanently
-[Daily digital interactions]](image-2.png)
+[Daily digital interactions](assets/image-2.png)
 When your bank generate monthly statements, analyzes spending patterns for fraud detection, or creates reports for regulatory compliance, it's using *analytical workloads* that examine large volumes of histroical data to extract insights and patterns.
 These systems analyze thousands or millions of transactions simultaneously to idenify trends, detect unusual behavior, and generate comprehensice reports.
 For example, the bank might analyze six months of credit card transactions across all customers to identify spending patterns that could show fraudulent activity.
@@ -46,7 +46,7 @@ Focus on when and why you would choose different approaches, as these concepts w
 The figure below illustrates how data workloads span a spectrum from pure transactional processing to pure analytical processing, with many hybrid scenarios in between.
 Understanding the spectrum helps you make informed decisions about system architecture and service selection.
 
-[Data workload spectrum]](image-3.png)
+[Data workload spectrum](assets/image-3.png)
 
 At the end of the spectrum, we have *OLTP* systems that focus on individual transactions with immediate consistency requirements.
 Think of an ATM withdrawl--it must process immediately, update your account balance instantly, ensure that the money is dispensed correctly, and guarentee the transaction is permanent.

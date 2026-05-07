@@ -50,7 +50,7 @@ I'll explain this throughout the section.
 
 The entire structure is encapsulated within the Storage Account boundary, showing how all these componenets are unified under a single storage namespace.
 
-![Azure Blob Storage Architecture](image-13.png)
+![Azure Blob Storage Architecture](assets/image-13.png)
 
 ### Understanding Object Storage
 
@@ -219,7 +219,7 @@ The dollars signs ($) on the left side represent storage costs, which decrease i
 Conversely, the dollar signs on the right side represent transaction costs, which increase in size as we move down through the tiers, demonstrating the higher costs associated with accessing data in cooler storage tiers.
 This visual representation highlights the fundamental trade-off in Azure's tiered storage system: as storage costs decrease in cooler tiers, the cost of accessing that data increases.
 
-![Storage and transaction cost relationship](image-14.png)
+![Storage and transaction cost relationship](assets/image-14.png)
 
 As we conclude our exploration of storage tiers, it's clear that effective data management in the cloud requires more than just storage space.
 It demands a thoughtful approach to data lifecycle management.
@@ -317,7 +317,7 @@ Meanwhile, the NFS side stores Linux-specific items like Linux Data and App Moun
 At the bottom of the diagram, we can see three different ways to access these files: through Windows Mount, Linux Mount, or the REST API.
 This setup allows users to work with their cloud files just as easily as they would with files on their local computer, regardless of which system they're using
 
-![File storage architecture](image-15.png)
+![File storage architecture](assets/image-15.png)
 
 ### Understanding Cloud File Shares
 
@@ -496,7 +496,7 @@ Similarly, the `Orders` table shows how order information is stored with its own
 At the bottom of the diagram, we see three types of Query Patterns that can be used to access this data: Point Query, Parition Query, and Range Query.
 This shows how users can retrieve information from these tables in different ways depending on their needs.
 
-![Table Storage architecture](image-16.png)
+![Table Storage architecture](assets/image-16.png)
 
 The structure illustrates how Table Storage offers a simple yet powerful way to store differnt types of data without needing to define a rigit structure beforehand, making it perfect for scenarios where data might vary between entries.
 Now let's get into the details of how NoSQL structure works in Azure Table Storage
@@ -662,7 +662,7 @@ Let these patterns guide your choice of storage services rather than trying to f
 The figure below illustrates how these components work together, creating a comprehensive storage solution that's greater than the sum of its parts.
 Each connection represents a carefully considered data flow, optimized for performance, cost, and reliability.
 
-![Bringing Blob, File, and Table Storage together](image-17.png)
+![Bringing Blob, File, and Table Storage together](assets/image-17.png)
 
 By understanding and leveraging the strengths of each storage service, organizations can build robust, scalable, and efficent data architectures that serve their needs today while remaining flexible enough to grow with them tomorrow.
 

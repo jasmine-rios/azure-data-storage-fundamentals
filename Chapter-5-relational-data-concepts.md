@@ -96,7 +96,7 @@ To see these concepts in action, let's examine a basic example of an order manag
 Before we do, however, it's important to undertand foreign keys. A *foreign key* is a column in one table that refrences the primary key of another table, creating a link between them.
 For instance, an `Orders` table might have a `CustomerID` column that reference the primary key in the `Customers` table, establishing which customer placed each order
 
-![Basic order manamgemt tables](image-6.png)
+![Basic order manamgemt tables](assets/image-6.png)
 
 The system demostrtes how tables work together to create a complete business solution.
 The `Customers` table stores customer information, with each row representing one customer's complete profile.
@@ -212,7 +212,7 @@ While you can use various column types as keys, the DP-900 exam focuses on simpl
 To understand how these relationships work in practice, let's explore a basic scenario: an online bookstore.
 Consider how a bookstore needs to track customers, customer's orders, books, and book categories in the figure below
 
-![Bookstore database relationships](image-7.png)
+![Bookstore database relationships](assets/image-7.png)
 
 Our bookstore database demostrates several key relationship types working together:
 
@@ -462,7 +462,7 @@ Starting from the top, you first choose which operation you need based on your g
 - When changing existing data, the `UPDATE` path leads you throug specifying the table, setting new values, and adding conditions to identify which records to update.
 - For removing data, the `DELETE` path demonstrates the importance of specifying both the table and the `WHERE` clause to identify which records to remove.
 
-![Common SQL operations](image-8.png)
+![Common SQL operations](assets/image-8.png)
 
 So far, we've worked with single tables in our examples.
 However, most real databases store related information across multiple tables.
@@ -561,7 +561,7 @@ First, it simplifies reporting by encapsulating complex join logic.
 Second, it enforces consistency by ensuring that everyone uses the same calculations for metrics such as revenue.
 Third, it enhances security by allowing us to grant access to specific data combinations without exposing underlying tables.
 
-![How views work](image-9.png)
+![How views work](assets/image-9.png)
 
 The figure above illustrates how views work in practice using a bookstore database example.
 At the top layer, we have our underlying tables: `Books`, `Orders`, and `OrderItems`, which store the raw data.
@@ -807,7 +807,7 @@ The DP-900 exam often presents scenarios where you need to understand how differ
 
 Before we drive into specifics of queries and database objects, let's take a look at the structure of banking database in the figure below
 
-![Basic banking entity relationship diagram](image-10.png)
+![Basic banking entity relationship diagram](assets/image-10.png)
 
 The ER (entity relationship) figure illustrates the key tables and their relationships.
 The lines between the tables represent the relationships, with the symbols indicating the type of relationship (one-to-many or many-to-one).
@@ -955,7 +955,7 @@ Let's see how these pieces work together in a typical usage scenario:
     b. Results are filtered for the specific customer and month.
     c. Transactions are ordered by date to show the activity chronologically.
 
-![Basic banking transaction flow](image-11.png)
+![Basic banking transaction flow](assets/image-11.png)
 
 The flow depicted in the figure demonstrates how the database objects we've created--tables, views, and stored procedures--work together to support the core operations of a simple banking system.
 The tables provide the structure for storing data, the views simplify common queries, and the stored procedures handle complex, multistep processses.

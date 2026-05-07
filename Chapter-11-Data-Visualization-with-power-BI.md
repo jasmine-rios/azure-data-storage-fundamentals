@@ -12,7 +12,7 @@ Theis democratization accelerates the journey from data to insight to action, en
 The Power BI visualization framework showin in figure shows how data flows from diverse sources through transformation and modeling to create interactive visualizations and dashboards.
 The diagram illustratres the progression from data connection on the left through preparation, modeling, visualization, and sharing on the right, highlighting how Power BI unifies thes previously seprate processes into a cohesive analytical experience
 
-![Power BI overall framework](image-27.png)
+![Power BI overall framework](assets/image-27.png)
 
 For the DP-900 exam and anyone working with Azure's data ecosystem, understanding Power BI is essential.
 As Microsoft's flagship business intelligence platform, Power BI integrates seamlessly with Azure data services, forming a crucial component in the modern data toolkit.
@@ -118,7 +118,7 @@ The diagram shows Power BI Desktop spanning the connection, preparation, modelin
 Power BI Dataflows support the preparation stage, and Power BI Report Builder provides additional visualization capabilities.
 The workflow emphasizes how Power BI provides integrated capabilities across the entire analytical process.
 
-![Power BI suite of capabilities](image-28.png)
+![Power BI suite of capabilities](assets/image-28.png)
 
 ## Power BI Capabilities
 
@@ -829,3 +829,4 @@ The resulting architectures provide responsive analytical experiences even again
 As you move beyond certification to real-world implementation, remember that effective Power BI deployment represents a journey rather than a destination.
 Technologies will continue to evolve, but the fundamental principles of connecting diverse data, creating appropriate models, and desinging effective visualizations remain constant.
 The solid foundation provided by understanding Power BI's core capabilities will server you well as you navigate this evolving landscape.
+

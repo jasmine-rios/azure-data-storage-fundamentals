@@ -12,7 +12,7 @@ This fundamental shift from reactive to proactive analytics transforms both tech
 Figure below illustrates how data flows from diverse sources through ingestion and processing to deliver immediate insights.
 The diagram shows streaming data entering the system on the top, passing through ingestion services and processing engines, and finally serving immediate insights through dashboards, alerts, and operational systems on the bottom.
 
-![Real-time analytics patterm](image-23.png)
+![Real-time analytics patterm](assets/image-23.png)
 
 For the DP-900 exam and anyone working with Azure, understanding real-time analytics is essential.
 Azure provides a comprehensive ecosystem of services designed specifically for ingesting, processing, analyzing, and acting on data in real time.
@@ -155,7 +155,7 @@ The figure highlights the fundamental difference between batch and stream proces
 The batch model (top) shows data accumulating before periodic processing, while the streaming model (bottom) demonstrates continuous processing as each data point arrives.
 The diagram emphasives how batch processing introduces inherent delays between data creation and insight generation, while streaming enables immediate analysis.
 
-![Comparing batch and stream processing](image-24.png)
+![Comparing batch and stream processing](assets/image-24.png)
 
 ### Characteristics of Batch Processing
 
@@ -365,7 +365,7 @@ The figure illustrates how Azure Stream Analytics process data streams through p
 Input adapters connect to event sources like Event Hubs or IoT Hub; event data flows through SQL-like analytical queries that filter, aggregate, and transform the information; and output adapters deliver results to destinations ranging from databases to visualization tools.
 The architecture emphasizes how Stream Analytics maintains continuous processing of incoming events, delivering analytical results with minimal latency.
 
-![Persistent queries with Azure Stream Analytics](image-25.png)
+![Persistent queries with Azure Stream Analytics](assets/image-25.png)
 
 Stream Analytics particularly excels in analytical scenarios requiring continuous query processing with SQL-like semantics.
 
@@ -550,7 +550,7 @@ Event sources on the left generate data that flow through Azure Service Bus, tri
 These functions process the events and produce outputs that flow to downstream systems on the right for storage, visualization, or operational action.
 The architecture demonstrates how Azure Functions provides responsive, customizable analytical capabilities that scale automatically with event volume.
 
-![Azure Functions as BI forwarder](image-26.png)
+![Azure Functions as BI forwarder](assets/image-26.png)
 
 Azure Functions paricularly excels at scenatios requiring custom analytical procesing:
 
