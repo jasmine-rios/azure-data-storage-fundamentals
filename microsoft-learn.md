@@ -181,4 +181,168 @@ SQL Managed instance additionally supports Windows authentication for Microsoft 
     Microsoft Entra authentication supports both managed and federated accounts.
     The federated accounts support Windows users and groups for a customer domain federated with Microsoft Entra ID.
 
-    Microsoft Entra supports several different authentication options, including multifactor 
+    Microsoft Entra supports several different authentication options, including multifactor.
+
+    # Explore Analytical data processing
+
+    Analytical data processing typically uses read-only (or read-mostly) systems that store vast volumes of historical data or business metrics.
+    Analytics can be based on a snapshot of the data at a given point in time, or a series of snapshots.
+
+    The specific details for an analytical processing system can vary between solutions, but a common architecture of enterprise-scale analytics looks like this:
+
+    1. Operational data is extracted, transformed, and loaded (ETL) into a data lake for analysis.
+
+    2. Data is loaded into a schema of tables- typically in a Spark-based *data lakehouse* with tabular abstrations over files in the data lake, or a data warehouse with a fully relational SQL engine.
+    3. Data in the data warehouse may be aggregated and loaded into an online analytical processing (OLAP) model, or *cube*. Aggregated numeric values (measures) from fact tables are calculated for intersections of *dimensions* from dimension tables.
+    For example, sales revenue might be totaled by date, customer, and product.
+    4. The data in the data lake, data warehouse, and analytical model can be queried to product reports, visualizations, and dashboards.
+
+    *data lakes* are common in large-scale data analytical processing scenarios, where a large volume of file-based data must be collected and analyzed.
+
+    *Data warehouses* are an established way to store data in a relational schema that is optimized for read operations--primarly querires to support reporting and data visualization.
+    *Data Lakehouses* are a more recent innovation that combine the flexible and scalable storage of a data lake with the relational querying semantics of a data warehouse.
+    The table schema may require some denormalization of data in an OLTP data source (introducing some duplication to make queries perform faster).
+
+    An OLAP model is an aggregated type of data storage that is optimized for analytical workloads.
+    Data aggregations are across dimensions at different levels, enabling you to *drill up/down* to view aggregations at multiple hierachical levels; for example to find total sales by region, by cite, or for an individual address.
+    Because OLAP data is pre-aggregated, queries to return the summaries it contains can be run quickly.
+
+    Different types of users might perform analytical work at different stages of the overall architecture.
+    For example:
+
+    - Data scientists might work directly with data files in a data lake to explore and model data.
+    - Data analysts might query tables directly in the data warehouse to produce complex reports and visualizations.
+    - Business users might consume pre-aggregated data in an analytical model in the form of reports or dashboards.
+
+# Online transaction processing (OLTP)
+
+The management of transactional data by using computer systems is reffered to as online transaction processing (OLTP).
+OLTP systems record business interactions as they occur in the day-to-day operation of the organization, and support querying of this data to make inferences.
+
+## Transactional Data
+
+Transactional data is information that tracks the interactions related to an organization's activities.
+These interactions are typically business transactions, such as payment recieved from customers, payments made to suppliers, products moving through inventory, orders taken, or services delivered.
+Transactional events, which represent the transactions themselves, typically contain a time dimension, some numeric values, and references to other data.
+
+Transactions typically need to be *atomic* and *consistent*.
+Atomicity means that an entire transaction always succeeds or fails as one unit of work, and is never left in a half-completed state.
+If a transaction can't be completed, the database system must roll back any steps that were already done as part of that transaction.
+In a traditional relational database management system (RDBMS), this rollback happens automatically when a transaction can't complete.
+Consistency means that transactions always leave the data in a valid state.
+These transactions are informal descriptions of atomicity and consistency.
+There are more formal definitions of these properties, such as atomic, consistent, isolated, and durable (ACID).
+
+Transactional databases can support strong consistency for transactions by using various locking strategies, such as pessimistic locking.
+These strategies help ensure that all data remains consistent within the context of the workload, for all users and processes.
+
+The most common deployment architecture that uses transactional data is the data store tier in a three-tier architecture.
+A three-tier architecture typically consists of a presentation tier, business logic tier, and data store tier.
+A related deployment architecture is the N-tier architecture, which can have multiple middle-tiers handling business logic.
+
+Typical traits of transactional data
+
+Requirement | Description
+|---|---|
+Normalization | Highly normalized
+Schema | Schema on write, enforced
+Consistency | Strong consistency, ACID guarentees
+Integrity | High integrity
+Uses transactions | Yes
+Locking strategy | Pessimistic or optimistic
+Updateable | Yes
+Appendable | Yes
+Workload | Heavy writes, moderate reads
+Indexing | Primary and secondary indexes
+Datum size | Small to medium sized
+Query flexibility | Highly flexible
+Scale | Small (MBs) to large (a few TBs)
+
+### When to use the solution
+
+Choose OLTP when you need to efficently process and store business transactions and immediately make them available to client applications in a consistent way.
+Use this architecture when any tangible delay in processing has a negative effect on the day-to-day operations of the business.
+
+OLTP systems are designed to efficently process and store transactions, and query transactional data.
+The goal of efficently processing and storing individual transactions by an OLTP system is partly accomplished through data normalization, which breaks up the data into smaller, less redundant chunks.
+This step enables the OLTP system to process large numbers of transactions independently.
+It also avoids extra processes required to maintain data integrity in the presence of redundant data.
+
+#### Challenges
+
+An OLTP system can create a few challenges:
+
+- When you run analytics against the data that rely on aggregate calculations over millions of individual transactions, it's very resource-intensive for an OLTP system. 
+They can be slow to run and cause a slow-down by blocking other transactions in a database.
+As a result, OLTP systems aren't always ideal for handling aggregates over large amounts of distributed data.
+But there are exceptions, such as a well-planned schema.
+
+- When you conduct analytics and reporing on data that's highly normalized, the queries tend to be complex, because most queries need to denormalized the data by using joins.
+The increased normalization can make it difficult for business users to query without the help of a database administrator (DBA) or data developer.
+
+- When you store the history of transactions indefinatley or store too much data in any one tablem it can lead to slow query performance, depending on the number of transactions that you store.
+The common solution is to maintain a relevant window of time (such as the current fiscal year) in the OLTP system and offload historical data to other systems, such as a data mart or data warehouse.
+
+### OLTP in Azure
+
+Applications such as websites hosted in App Service Web Apps, REST APIs running in App Service, and mobile or desktop applications typically communicate with the OLTP system by way of a REST API intermediary.
+
+In practice, most workloads aren't enirely OLTP. They often include an analytical component as well and require real-time reporting, such as running reports against the operational system.
+This workload is reffered to as hybrid transactional and analytical processing (HTAP).
+
+In Azure, the following data stores meet the core requirements for OLTP and the management of transaction data:
+
+- Azure SQL Database
+- Azure SQL Managed Instance
+- SQL Server on Azure VM
+- Azure Database for MySQL
+- Azure Database for PostgreSQL
+- Azure Cosmos DB
+
+### Key selection criteria 
+
+To narrow the choices, start by answering the following questions:
+
+- Do you want a managed service rather than managing your own servers?
+- Does your solution have specific dependencies for Microsoft SQL Server, MySQL, or PostgreSQL compatibility? Your application might limit the data stores you can choose based on the drivers it supports for communicating with the data store, or the assumptions it makes about which database is used.
+- Are your write throughput requirements high? If yes, choose an option that provides in-memory tables or global distribution capabilities like Azure Cosmos DB.
+- Is your solution multitenant? 
+If so, consider options that support capacity pools.
+Multiple database instances draw from a elastic pool of resources, instead of fixed resources per database.
+Elastic Pools can help you better distribute capacity across all database instances and make your solutions more cost effective.
+Azure Cosmos DB offers multiple isolation models for multitenant scenarios.
+- Does your data need to be readable with low latency in multiple regions? If yes, choose an option that supports readable secondary replicas or global distribution.
+- Does your database need to be highly available across geo-graphic regions? If yes, choose an option that supports geographic replication.
+Also consider the options that support automatic failover from the primary replica to a secondary replica.
+- Does your workload require guarenteed ACID transactions? If you work with nonrelational data, consider Azure Cosmos DB, which provides ACID guarentees through transactional batch operations within a logical partition.
+- Does your database have specific security needs? If yes, examine the options that provide capabilities like row-level security, data masking, and transparent data encryption.
+- Does your solution require distributed transactions? If yes, consider elastic transactions within Azure SQL Database and SQL Managed Instance.
+SQL Managed Instance also supports traditional calls through the Microsoft Distributed Transaction Coordinator (MSDTC).
+
+# SQL Advanced Threat Protection
+
+Advanced Threat Protection for Azure SQL Database, Azure SQL Managed Instance, Azure Synapse Analytics, SQL Server on Azure VMs, and SQL Server enabled by Azure Arc detects anomalous activities that indicate unusual and potentially harmful attempts to access or exploit databases.
+
+Advanced Threat Protection is part of the Microsoft Defender for SQL offering, which is a unified package for advanced SQL security capabilities.
+You can access and manage Advanced Threat Protections through the central Microsoft Defender fo SQL portal.
+
+## Overview
+
+Advanced Threat Protection provides a new layer of security.
+It enables you to detect and respond to potential threats as they occur by providing security alerts on anomalous activities.
+You recieve an alert upon suspicious database activities, potential vulnerabilities, and SQL injection attacks, as well as anomalous database access and query patterns.
+Advanced Threat Protection integrates alerts with Microsoft Defender for Cloud, which include details of suspicious activity and recommend action on how to investigate and mitigate the threat.
+Advanced Threat Protection makes it simple to address potential threats to the database without the need to be a security expert or manage advanced security monitoring systems.
+
+For a full investigation experience, enabling auditing, which writes database events to an audit log in your Azure storage account.
+
+### Alerts
+
+Advanced Threat Protection detects anomalous activities that indicate unusual and potentially harmful attempts to access to exploit databases.
+
+#### Explore detection of a suspicious event
+
+You recieve an email notification when the system detects anomalous database activities.
+The email provides information on the suspicious securty event, including the nature of the anomalous activities, database name, server name, application name, and the event time.
+In addition, the email provides information on possible causes and recommended actions to invesigate and mitigate the potential threat to the database.
+
