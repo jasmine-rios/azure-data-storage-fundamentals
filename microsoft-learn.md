@@ -346,3 +346,407 @@ You recieve an email notification when the system detects anomalous database act
 The email provides information on the suspicious securty event, including the nature of the anomalous activities, database name, server name, application name, and the event time.
 In addition, the email provides information on possible causes and recommended actions to invesigate and mitigate the potential threat to the database.
 
+1. Select the **view recent SQL alerts** link in the email to launch the Azure portal and show the Microsoft Defender for Cloud alerts page.
+This page provides an overview of active threats detected on the database.
+
+2. Select a specific alert to get additional details and actions for investigating this threat and remediating future threats.
+
+For example, SQL injection is one of the most common Web applicaiton security issues on the Internet that bad actors use to attack data-driven applications.
+They take advantage of application vulnerabilities to inject malicious SQL statements into application entry fields, breaching or modifying data in the database.
+For SQL injection alerts, the alert's details include the vulnerable SQL statement that was exploited.
+
+#### Explore alerts in the Azure Portal
+
+Advanced Threat Protection integrate its alerts with Microsoft Defender for cloud.
+Live SQL Advanced Threat Protection tiles within the database and SQL Microsoft defender for cloud blades in the Azure portal track the status of active threats.
+
+Select **Advanced Threat Protection alert** to launch the Microsoft Defender for Cloud alerts page and get an overview of active SQL threats detected on the database.
+
+# Explore file Storage
+
+The ability to store data in files is a core element of any computing system.
+Files can be stored in local file systems on the hard disk of your personal computer, and on removable media such as USB drives; but in most organizations, important data files are stored centrally in some kind of shared file storage system.
+Increasingly, that central storage location is hosted in the cloud, enabling cost-effective, secure, and reliable storage for large volumes of data.
+
+The specific file format used to store data depend on a number of factos, including:
+
+- The type of data being stored (structured, semi-structured, or unstructured).
+- The applicaitons and service that will need to read, write, and process the data.
+- The need for the data files to be readable by humans, or optimized for efficent storage and processing.
+
+Some common file formats are discussed below
+
+## Delimited text files
+
+Data is often stored in plain text format with specific field delimiters and row terminators.
+The most common format for delimited data is comma-seperated values (CSV) in which fields are seperated by commas, and rows are terminated by a carriage return / new line.
+Optionally, the first line may include the field names.
+Other common formats include tab-separated values (TSV) and space-delimited (in which tabs or spaces are used to seperate fields), and fixed-width data in which each field is allocated a fixed number of characters.
+Delimited text is a good choice for structured data that needs to be accessed by a wide range of applications and services in a human-readable format.
+
+The following example shows customer data in comma-delimited format:
+
+```bash
+FirstName, LastName, Email
+Joe, Jones, joe@litware.com
+Samir, Nadoy, samir@northwind.com
+
+```
+
+## JavaScript Object Notation (JSON)
+
+JSON is a ubiquitious format in which a hieracrchical document schema is used to define data entities (objects) that have multiple attributes.
+Each attribute might be an object (or a collection of Objects); making JSON a flexible format that's good for both structured and semi-structured data.
+
+The following example shows a JSON document containing a collection of customers.
+Each customer has three attributes (firstName, lastName, and contact) and the *contact* attribute contains a collection of objects that represent one or more contact methods (email or phone).
+Note that objects are enclosed in braces ({..}) and collections are enclosed in square brackets ([..]).
+Attributes are represented by *name: value pairs* and seperated by commas (,).
+
+```JSON
+{
+  "customers":
+  [
+    {
+      "firstName": "Joe",
+      "lastName": "Jones",
+      "contact":
+      [
+        {
+          "type": "home",
+          "number": "555 123-1234"
+        },
+        {
+          "type": "email",
+          "address": "joe@litware.com"
+        }
+      ]
+    },
+    {
+      "firstName": "Samir",
+      "lastName": "Nadoy",
+      "contact":
+      [
+        {
+          "type": "email",
+          "address": "samir@northwind.com"
+        }
+      ]
+    }
+  ]
+}
+
+```
+## Extensible Markup Language (XML)
+
+XML is a human-readable data format that was populat in the 1990s and 2000s. It's largely been superseded by the less verbose JSON format, but there are still some systems that use XML to represent data.
+XML uses *tags* enclosed in angle-brackets (<../>) to define *elements* and *attributes* as shown in this example.
+
+```XML
+<Customers>
+  <Customer name="Joe" lastName="Jones">
+    <ContactDetails>
+      <Contact type="home" number="555 123-1234"/>
+      <Contact type="email" address="joe@litware.com"/>
+    </ContactDetails>
+  </Customer>
+  <Customer name="Samir" lastName="Nadoy">
+    <ContactDetails>
+      <Contact type="email" address="samir@northwind.com"/>
+    </ContactDetails>
+  </Customer>
+</Customers>
+
+```
+
+## Binary Larger Object (BLOB)
+
+Ultimately, all files are stored as binary data (1's and 0's), but in the human-readable formats discussed above, the bytes of binary data are mapped to printable characters (typically through a character encoding schme such as ASCII or Unicode).
+Some file formats however, particularly for unstructured data, store the data as raw binary that must be interpreted by applications and rendered.
+Common types of data stored as binary, include images, video, audio, and application-specific documents.
+
+When working with data like this, data professionals often refer to the data files as BLOBs (Binary Large Objects).
+
+## Optimized file formats
+
+While human-readable formats for structured and semi-structured data can be useful, they're typically not optimized for storage space or processing.
+Over time, some specialized file formats that enalbe compression, indexing, and efficent storage and processing have been developed.
+
+Some common optimized file formats file formats you might see include Avro, ORC, and Parquet:
+
+- Avro is a row-based format.
+It was created by apache.
+Each file contains a header that describes the structure of the data in the file.
+This header is stored as JSON.
+The data is stored as binary information in one or more blocks of records.
+An application uses the information in the header to parse the binary data and extact the fields it contains.
+Avro is a good format for compressing data and minimixing storage and network bandwidth requirements.
+
+- ORC (Optimized Row Columar format) organizes data into columns rather than rows. 
+It is an Apache project, originally devloped as a Hadoop-native format for optimizing read and write operations in Apache Hive (Hive is a data warehouse system that supports fast data summarization and querying over large datasets).
+An ORC files contains *stripes* of data.
+Each stripe holds the data for a column or set of columns.
+A stripe contains an index into the rows in the stripe, the data for each row, and a footer that holders statistical information (Count, sum, max, min, and so on) for each column.
+
+- Parquet is another columnar data format.
+It is an Apache Project. A Parquet file contains row groups.
+Data for each column is stored together in the same row group.
+Each row group contains one or more chunks of data.
+A Parquet file includes metadata that descrives the set of rows found in each chunk.
+An application can use this metadata to quickly located the correct chunk for a given set of rows, and retrieve the data in the specified columns for these rows.
+Parquet specialized in storing and processing nested data types efficently.
+It supports very efficent compression and encoding schemes.
+
+# Explore databases
+
+A database is used to define a central system in which data can be stored and queried.
+In a simplistic sense, the file system on which files are stored is a kind of databasel but when we use the term in a professional data context, we usually mean a dedicated sysem of managing data records rather than files.
+
+## Relational Databases
+
+Relational databases are commonly used to store and query structured data.
+The data is stored in tables that represent entities, such as customers, products, or sales orders.
+Each instance of an entity is assigned a primary key that uniquely identifies it; and these keys are used to reference the entity instance in other tables.
+For example, a customer's primary key can br referenced in a sales order record to indicate which customer placed the order.
+The use of keys to reference data entities enables a relational database to be normalized; which in part means the elimination of duplicate data values so that, for exmaple, the details of an individual customer are stored only once, not for eaach sales order the customer places.
+The tables are managed and queried using Structured Query Language (SQL), which is based on an ANSI standard, so it's similar across multiple database systems.
+
+### Non-relational databases
+
+Non-relational databases are data management systems that don't apply a relational schema to the data.
+Non-relational databases are often referred to as a NoSQL database, even though some support a variant of the SQL language.
+
+There are four common types of non-relational databases commonly in use.
+
+- Key-value databases in which each record consists of a unique key and an associated value, which can be in any format.
+
+- Document databases, which are specific form of key-value database in which the value is a JSON document (which the system is optimized to parse and query)
+
+- Column family databases, which store tabular data comprising rows and columns, but you can divide the columns into groups known as column-families.
+Each column family holds a set of columns that are logically related together.
+
+- Graph databases which stores entities as nodes with links to define relationships between them.
+
+# Explore analytical data stores
+
+There are two common types of analytical data store.
+
+## Data Warehouses
+
+A data warehouse is a relational database in which the data is stored in a schema that is optimized for data analytics rather than transactional workloads.
+Commonly, the data from a transactional store is transformed into a schema in which numeric values are stored in central fact tables, which are related to one or more dimension tables that represent entities by which the data can aggregated.
+For example a fact table might contian sales order data, which can be aggregated by customer, product, store, and time dimensions (enalbing you, for example, to easily find monthly total sales revenue by product for each store).
+This kind of fact and dimension table schema is called a star schema; though it's often extended into snowflake schema by adding additional tables related to the dimension tables to represent dimensional hierachies (for example, product might be related to product categories).
+A data warehouse is a great choice when you have transactional data that can be organized into a structured schema of tables, and you want to use SQL to query them.
+
+## Data Lakes
+
+A data lake is a file store, usually on a distributed file system for high performance data access.
+Technologies like spark or Hadoop are often used to process queries on the stored files and return data for reporting and analytics.
+These systems often apply a schema-on-read approach to define tabular schemas on semi-structured data files at the point where the data is read for analysis, without applying constraints when it's stored.
+Data lakes are great for supporting a mix of structured, semi-structured, and even unstructured data that you want to analyze without the need for schema enforcement when the data is written to the store.
+
+## Hybrid Approaches
+
+You can use a hybrid approach that combines features of data lakes and data warehouses in a data lakehouse.
+The raw data is sotred in a data lake, and Microsoft Fabric SQL analytics endpoints expose them as tables, which can be queried using SQL.
+When you create a Lakehouse with Microsoft Fabric, a SQL analytics endpoint is automatically created.
+Data lakehouses are a relatively new approach in Spark-based systems, and are enabled through technologies like Delta Lake; which adds relational storage capabilities to Spark, so you can define tables that enforce schemas and transactional consistency, support batch-loaded and streaming data sources, and provide a SQL API for querying.
+
+## Azure Services for Analytical Stores
+
+On Azure, there are several services that you can use to implement a large-scale analytical store including:
+
+Microsoft Fabric is a unified, end-to-end solution for large scale data analytics.
+It brings together multiple technologies and capabilities, enabling you to combine the data integrity and reliability of a scalable, high-performance SQL server based relational data warehouse with the flexibility of a data lake and open-source Apache Spark.
+It also includes native support for log and telemetry analytics with Microsoft Fabric Real-Time Intelligence, as well as built in data pipelines for data ingestion and transformation.
+Each Microsoft Fabric product experience has its own home, for example the Data Factory Home.
+Each Fabric Home displays the items that you create and have permision to use from all the workspace that you access.
+Microsoft Fabric is a great choice when you want to create a single, unified analytics solution.
+
+Azure Databricks is an Azure implementation of the popular Databricks platform.
+Databricks is a comprehensive data analytics solution built on Apache Spark, and offers native SQL capabilities as well as workload-optimized Spark clusters for data analytics and data science.
+Databricks provides an interactive user interface through which the system can be managed and data can be explored in interactive notebooks.
+Due to common use on multiple cloud platforms, you might want to consider using Azure Databricks as your analytical store if you want to use existing expertise with the platform or if you need to operate in a multicloud environment or support a cloud-portable solution.
+
+**Note**
+
+Each of these services can be thought of as an analytical data store, in the sense that they provide a schema and interface through which the data can be queried.
+In many cases however, the data is actually stored in a data lake and the service is used to process the data and run queries.
+Some soltuions might even combine the use of these services.
+An extract, load, and tranform (ELT) ingestion process might copy data into the data lake, and then use one of these services to transform the data, and  another to query it.
+For example, a pipeline might use a notebook running in Azure Databricks to process a large volume of data in the data lake, and then load it into tables in a Microsoft Fabric Warehouse.
+
+# Databricks - Understand Key Concepts
+
+Azure Databricks is a single service platform with multiple technologies that enable working with data at scale.
+When using Azure Databricks, there are some key concepts to understand.
+
+## Workspaces
+
+A workspace in Azure Databricks is a secure, collaborative environment where you can access and organize all Databricks assets, such as notebooks, clusters, jobs, libraries, dashboards, and experiments.
+
+You can open an Azure Databricks Workspace from the Azure portal, by selecting **Launch Workspace**.
+
+It provides a web-based user interface (UI) as well as REST APIs for managing resources and workflows.
+Workspaces can be structured into folders to organize projects, data pipelines, or team assets, and permissions can be applied at different levels to control access.
+They support collaboration by allowing multiple users--such as data engineers, analysts, and data scientists--to work together on shared notebooks, track experiments, and manage dependencies.
+
+In addition, workspaces are tied to Unity Catalog (when enalbed) for centralized data governance, ensuring secure access to data across the organization.
+Each workspace is also linked to underlying Azure resource group (including a managed resource group) that holds the compute, networking, and storage resources Databricks uses behind the scenes.
+
+## Notebooks
+
+Databricks notebooks are interactive, web-based documents that combine runnable code, visualizations, and narrative text in a single environment.
+They support multiple languages--such as Python, R, Scala, and SQL--and allow users to switch between languages within the same notebook using magic commands.
+This flexibility makes notebooks well-suited for exploratory data analysis, data visualization, machine learning experiments, and building complex data pipelines.
+
+Notebooks are also designed for collaboration: multiple users can edit and run cells simultaneously, add comments, and share insights in real time.
+They integrate tightly with Databricks clusters, enabling users to process large datasets efficently, and can connect to external data sources through Unity Catalog for governed data access.
+In adddition, notebooks can be version-controlled, scheduled as jobs, or exported for sharing outside the platform, making them central to both ad-hoc exploration and production-grade workflows.
+
+Notebooks contain a collection of two types of cells: code cells and Markdown cells.
+Code cells contain runnable code.
+Markdown cells contain Markdown code that renders as text and graphics.
+You can run a single cell, a group of cells, or the whole notebook.
+
+Azure databricks leverages a two-layer architecture:
+
+- Control plane: This intenal layer, Managed by Microsoft handles backend services specific to your Azure Databricks account.
+
+- Compute Plane: This is the external layer tha processes the data and lives in your Azure Subscription.
+
+Clusters are the core computational engines in Azure Databricks.
+They provide the processing power required to run data engineering, data science, and analytics tasks.
+Each cluster consists of a driver node, which cooredinates execution,and one of more worker nodes, which handle the distributed computations.
+Clusters can be created manually with fixed resources or set to auto-scale, allowing Databricks to add or remove worker nodes depednding on workload demand.
+This flexibility ensures efficent resouce use and cost control.
+
+Azure Databricks Compute offers a broad set of compute options available for different workload types:
+
+- Severless compute: Fully managed, on-demand compute that automatically scales up or down to meet workload needs. Ideal for teams that want fast startup times, minimal management overhead, and elastic scaling.
+
+- Classic Compute: User-provioned and configured clusters that offer full control over compute settings, such as VM size, libraries, and runtime versions.
+Best for specialized workloads that require customization or consistent performance.
+
+- SQL warehouses: Compute resources optimized for SQL-based analytics and BI queries.
+SQL warehouses can be provisioned as either severless (elastic, managed) or classic (user-configured) depending on governance and performance requirements.
+
+This allows you to tailor compute to specific needs--from exploratory analysis in notebooks, to large-scale ETL pipelines, to high-performance dashboards and reporting.
+
+## Databricks Runtime
+
+The Databricks Runtime is a set of customized builds of Apache Spark that include performance improvements and additional libraries.
+These runtimes make it easier to handle tasks such as machine learning, graph processing, and genomics, while still supporting general data processing and analytics.
+
+Databricks provides multiple runtime versions, including long-term support (LTS) releases.
+Each release specifies the underlying Apache Spark version, its release date, and when support will end.
+Over time, older runtime versions follow a lifecycle:
+
+- Legacy - available but no longer recommended
+- Deprecated - marked for removal in a future release
+- End of Support (EoS) - no further patches or fixes are provided
+- End of Life (EoL) - retired and no longer available.
+
+If a maintenance update is released for a runtime version you're using, you can apply it by restarting your cluster
+
+## Lakeflow Jobs
+
+Lakeflow Jobs provide workflow automation and orchestration in Azure Databricks, making it possible to reliably schedule, coordinate, and run data processing tasks.
+Instead of running code manually, you can use jobs to automate repetitive or production-grade workloads such as ETL pipelines, machine learning training, or dashboard refreshes.
+
+A job in Databricks is essentially a container for one or more tasks.
+Tasks define the work to be done--for example, running a notebook, executing a Spark job, calling external code,..
+
+Jobs can be triggered in different ways:
+
+- On a schedule (for example, every night at midnight)
+- In response to an event
+- Manually, when needed
+
+Because they're repeatable and managed jobs are critical for production workloads.
+They ensure that data pipelines run consistently, ML models are trained and deployed in a controlled manner, and downstream systems recieve updates, accurate data.
+
+## Delta Lake
+
+Delta Lake is an open-source storage framework that improces the reliability and scalability of data lakes by adding transactional features on top of cloud object storage, such as Azure Data Lake Storage.
+Traditional data lakes can suffer from issues like data, partial writes, or difficulties managing concurrent access.
+Delta Lake addresses these problems by supporting: 
+
+- ACID transactions (atomicity, consistency, isolation, durability) for reliable reads and writes.
+- Scalable metadata handling so tables can grow to billons of files without performance loss.
+- Data versioning and rollback, enabling time travel queries and recovery of previous states.
+- Unified batch and streaming processing, so the same table can handle real-time ingestion and historical batch loads.
+
+On top of this foundation, Delta tables provide a familar table abstration that makes it easier to work with structured data using SQL queries or the DataFrame API.
+Delta tables are the default table format in Azure Databricks, ensuring that new data is stored with transactional guarentees by default.
+
+## Databricks SQL
+
+Databricks SQL brings data warhousing capabilities to the Databricks Lakehouse, allowing analysts and business users to query and visualize data stored in open formats directly in the data lake.
+It supports ANSI SQL, so anyone familiar with SQL can run queries, build reports, and create dashboards without needing to learn new languages or tools.
+
+Databricks SQL is available only in the Premium tier of Azure Databricks. 
+It includes:
+
+- A SQL editor for writting and running queries.
+- Dashboards and visualization tools for sharing insights
+- Integration with external BI and analytics tools
+
+## SQL Warehouses
+
+All Databricks SQL queries run on SQL warehouses (fomerly called SQL endpoints), which are scalable compute resource decoupled from storage.
+Different warehouse types are available depending on performance, cost, and management needs.
+
+- Serverless SQL Warehouses
+    - Instant and elastic compute with faster startup and autoscaling.
+    - Low management overhead since Databricks handles capacity, patching, and optimization.
+    - Cost efficency by scaling automatically and avoiding idle resource costs.
+
+- Pro SQL Warehouses
+    - Supports Photon and Predictive IO, but not intelligent Workload Management.
+    - Use when serverless is unavailable, or when custom networking is required (for example, federation or hybrid/on-premises connections).
+
+- Classic SQL Warehouses
+    - Compute resources in your own Azure subscription, not in Databricks.
+    - Takes approximately 4 minutes to start and scales with less responsiveness than serverless.
+    - Supports only Photon; no Predictive IO or intelligent workload management
+    - Use only for basic interactive exploration when severless or pro aren't options.
+
+## MLflow
+
+MLflow is an open-source platform designed to manage the end-to-end machine learning (ML) lifecycle.
+It helps data scientists and ML engineers track experiments, manage models, and streamline the process of moving models from development to production.
+MLflow also supports generative AI workflows and includes tools for evaluating and improving AI agents.\
+
+# Explore Apache Spark Structured Streaming
+
+Apache Spark is a distributed processing framework for large scale data analytics.
+You can use Spark on Microsoft Azure in the following services:
+
+- Microsoft Fabric
+- Azure Databricks
+
+Spark can be used to run code (usually written in Python, Scala, or Java) in parallel across multiple cluster nodes, enabling it to process very large volumes of data efficiently.
+Spark can be used for both batch processing and stream processing.
+
+## Spark Structured Streaming
+
+To process streaming data on Spark, you can use the Spark Structured Streaming library, which provides an application programming interface (API) for ingesting, processing, and outputting results from perpetual streams of data.
+
+Spark Structured Streaming is built on a ubiquitous structure called a dataframe, which encapsulates a table of data.
+You use the Spark Structured Streaming API to read data from a real-time data source, such as a Kafta hub, a file store, or a network port, into a "boundless" dataframe that is continually populated with new data from the stream.
+You then define a query on the dataframe that selects, projects, or aggregates the data--often in temporal windows.
+The results of the query generate another dataframe, which can be persisted for analysis or further processing.
+
+Spark Structured Streaming is a great choice for real-time analytics when you need to incorporate streaming data into a Spark based data lake or analytical data store.
+
+## Delta Lake
+
+Delta Lake is an open-source storage layer that adds support for transactional consistency, schema enforcement, and other common data warehousing features to data lake storage.
+It also unifies storage for streaming and bath data, and can be used in Spark to define relational tables for both batch and stream processing.
+When used for stream processing, a Delta Lake table can be used as a streaming source for queries against real-time data, or as a sink to which a stream of data is written.
+
+The spark runtimes in Microsoft Fabric and Azure Databricks include support for Delta Lake.
+
+Delta Lake combined with Spark Structured Streaming is a good solution when you need to abstract batch and stream processed data in a data lake behind a relational schema for SQL-based querying and analysis.

@@ -84,3 +84,88 @@ Which service allows you to perform near real-time analytics on the operational 
     [X] a column chart
     [] a matrix
 
+13. In a relational database, on which type of objects should you configure a datatype?
+
+    [X] columns
+    [] field
+    [] relationships
+    [] rows
+    [] tables
+
+
+14. You need to aggregate and store multiple JSON files that contain records for sales transactions.
+The solution must minimize the development effort.
+
+Which storage solution should you implement?
+
+    [] Azure Blob Storage
+    [X] Azure Cosmos DB
+    [] Azure Files
+    [] Azure SQL Database
+
+15. Which three services can be used to ingest data for stream processing? Each correct answer presents a complete solution
+
+    [X] Azure Data Lake Storage
+    [X] Azure Event Hubs
+    [] Azure functions
+    [X] Azure IoT Hub
+    [] Azure SQL Database
+
+16. You are processing data by using batches and streams.
+What should you use to ensure that transactional consistency is enforced during the processing?
+
+    [] Azure Blob Storage
+    [X] Azure Delta Lake
+    [] Azure SQL Database
+    [] Azure Table Storage
+
+1. B
+2. B
+3. B
+4. B
+5. C
+6. B
+7. A
+8. B
+9. C
+10. B
+11. A X
+12. A
+13. B
+14. A
+15. A
+16. B
+17. A
+18. B
+19. A
+20. B
+21. B
+22. D X
+23. D X
+24. A
+25. C X
+26. B
+27. C X
+28. B
+29. D
+30. B
+31. A
+32. A
+33. A
+34. A
+35. A
+36. A
+37. A
+38. A
+39. A
+40. A
+41. A
+42. A
+43. A
+44. A
+45. A
+46. A
+47. A
+48. A
+49. B
+50. A
