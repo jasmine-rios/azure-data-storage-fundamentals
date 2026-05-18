@@ -259,7 +259,7 @@ The complexity comes from multiple dimensions:
     - Complex business calculations like customer lifetime value and market basket analysis
     - What-if scenarios and sensitivity analysis for business planning
 
-A typical OLAP query might examine five yeeats of sales transactions to calculate monthly growth rates by product category and region, compare performance against industry benchmarks, identify seasonal patterns, and forecast future demand.
+A typical OLAP query might examine five years of sales transactions to calculate monthly growth rates by product category and region, compare performance against industry benchmarks, identify seasonal patterns, and forecast future demand.
 This single query could involve processing hundreds of millions of records, performing thousands of calculations, and generating results that inform strategic business decisions.
 
 #### Query performance over transaction consistency

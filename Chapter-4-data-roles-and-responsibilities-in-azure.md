@@ -42,7 +42,7 @@ Database administration in Azure represents a significant shift from traditional
 While the fundamental responsibility of protecting and optimizing data remains unchanged, the tools, approaches, and daily activitiries of a DBA have evolved considerably.
 
 In the past, DBAs spend considerable time managing hardware, applying patches, and handling physical backups. Today's Azure DBA forcuses on higher value activities like service optimization, security configuration, and automated management. 
-Instead of worrying about storage arrays and backup tapes, they configure automated backup policie and develop georeplication strategies, which involve creating synchtonized copies of databases in different geographical locations.
+Instead of worrying about storage arrays and backup tapes, they configure automated backup policies  and develop georeplication strategies, which involve creating synchtonized copies of databases in different geographical locations.
 
 **Exam Tip**
 
@@ -74,7 +74,7 @@ They can easily scale resources up or down based on demand, something that wasn'
 When databases experience heavy loads, DBAs can quickly adjust computing power on memory without any hardware changes.
 
 Data backup and recovery have been transformed by Azure's automated capabilities.
-Instead of managing physical backiup tapes, DBAs now configure automatic backup policies that store data safely in geo-redundant storage.
+Instead of managing physical backip tapes, DBAs now configure automatic backup policies that store data safely in geo-redundant storage.
 They set up geo-replication to maintain database copies in different regions, ensuring business continuity even if an entire data center goes offline.
 
 Cost management has become a crucial skill for Azure DBAs.
