@@ -125,3 +125,152 @@ This is an easy course to pass, and great to those new to cloud or data-related 
 
 - SQL Server Management Studio (SSMS)
     - Automation tooling for running SQL commands or common database operations
+    - Graphical interface for managing on-premises and cloud-based data services
+    - Runs on Windows
+    - More mature than Azure Data Studio
+
+- Azure Portal and CLI
+    - Manage SQL database configurations e.g. Create, deleting, resizing, number of cores
+    - Manage and provision other Azure Data Services
+    - Automate the creating, updating, or modifying resources via Azure Resource Manager templates (IaC)
+
+## Data Engineering - Common Tools
+
+- Azure Synapse Studio: Azure portal integrated to manage Azure Synapse, data ingestion (Azure Data factory), management of Azure Synapse assets (SQL Pools/Spark Pool)
+
+- Knowledge SQL: Create database, tables, views, etc.
+
+- Azure CLI: Support operations SQL cmd to connect to Microsoft Server Azure SQL data and run a talk queries and commands
+
+- HDinsights: Streaming data via Apache Kafka or Apache Spark, applying ELT jobs via HIVE, PIG, Apache Spark
+
+- Azure Databricks: Using apache spark to create ELT or streaming jobs to data ware houses or data lakes
+
+## Data Analyst - Common Tools
+
+- Power BI Desktop: A stand alone application for data visualization.
+    You can do data modeling
+    Connect to many data sources
+    Create interactive reports
+
+- Power BI Portal/ Power BI Service: A web UI for creating interactive dashboards
+
+- Power BI Report Builder: Create paginated reports (printable reports)
+
+## Data Overview
+
+Data- Units of information
+    Data Documents - Types of abstract groupings of data
+        Data Sets - unstructured logical grouping of data
+            Data Structures - structured data
+                Data Types - How single units of data are intended to be used
+
+Batch and Streaming Data
+    How do we move our data around?
+
+Relational and Non Relational
+    How to access, query, and search our data?
+
+Data Modeling
+    How we prepare and design our data?
+
+Schema and Schemaless
+    How do we structure our data for search?
+
+Data Integrity and Data Corruption
+    How do we trust our data?
+
+Normalized and Denormalized
+    How do we trade quality vs. speed?
+
+## Introduction to Data
+
+What is data?
+Data is units of information that could be in the form of numbers, text, or machine code, images, videos, audio, or physical (handwritting)
+
+What are data documents?
+
+A data document defines the collective form in which data exists.
+Common types of data documents:
+
+- Datasets - a logical grouping of data
+- Databases - Structured data that can be quickly access and searched
+- Datastores - Unstructured or semi-structured data to housing data
+- Data warehouses - structured or semi-structured data for creating reports and analytics
+- Notebooks - Data that is arranged in pages, designed for easy consumption
+
+Examples:
+
+- MNIST dataset - dataset
+- Azure SQL - Database
+- Azure Data Lake - Datastore
+- Azure Synapse Analytics - Data warehouse
+- Jupyter Notebook - Digital Notebook
+
+## Data Sets
+
+A data set is a logical grouping of units of data that generally are closely related and/or share the same data structure.
+
+There are publicly available data seys that are used in the learning of statistics, data analytics, machine learning
+
+MNIST database - Images of hand written digits used to test classification, clustering, and image processing algorithm.
+Commonly used when learning how to build computer vision ML models to translate handwritting into digital text
+
+## More Data sets
+
+Common Objects in Context (COCO) dataset: A dataset which contains many common images using a JSON file (coco format) that identify objects or segments within an image.
+
+This dataset features:
+- Object segementation
+- Recognition in Context
+- Superpixel stuff segmentation
+- 329K images (>200K labeled)
+- 0.5 million object instances
+- 79 object categories
+- 90 stuff categories
+- 4 captions per image
+
+IMBD Reviews Dataset: A movie review dataset with 25,000 highly polar movie reviews for training, and 25,000 for testing.
+Could be useful for determining customer sentiment analysis
+
+Free Music Archive (FMA)
+A dataset for music analysis
+- 106,573 tracks
+- 163 genres
+
+LibriSpeech
+A dataset of 1000 hours of English speech
+
+There are many more datasets online (some could be paid, or you need to extract the data via an API or scrape the data yourself):
+
+## Data Types
+
+What is a data type?
+
+A data type is a single unit of data that tells a complier or interpreter (computer program) how data is intended to be used
+
+The variety of data types will greatly vary based on the computer program
+
+Let's take the most common data types
+
+Numeric Data Types: A data type involving mathematical numbers
+    - Integer: A whole number (could be negative or positive) -100, 7, 11, 21903823091
+    - Float : A number that has a decimal e.g. 1.5, 0.0, -10.24, 9.432363535345
+
+Text Data Types: A data type that contains readable and non-readable letters
+    - Character: A single letter, alphanumeric (A-Z), Digit (0-9), blank space, punction, special characters ($%&*@)
+    - String: A sequence of characters e.g. Words, sentences, and paragraphs
+    - Composite: A data type that contains cells of data that can be accessed via an index or a key
+        - Array: A group of elements that contain the same data type, can be accessed via their index (position)
+        - Hash (dictionary): A group of elements where a key can be used retrive a value. Composites can be both data-types and data structures
+
+Binary Data Type: Represented by a bit or a series of bits (a byte), which is either 0 (off) or 1 (on)
+
+Boolean Data Type - A datatype that is either True or False
+- Some languages represents a Boolean as
+    - a bit as a boolean e.g. 0 (false) or 1 (true)
+    - The first letter e.g. t (true) or f (false)
+
+Enummeration (Enum) Data Type - A group of constant (unchangable) variables e.g. DIAMOND, SPADE, HEART, CLUBS
+    - Can be a data type and/or a data structure, varies on the language
+
